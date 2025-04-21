@@ -40,3 +40,16 @@ GROUP BY
 ORDER BY 
     TotalKgVendidos DESC;
 -- ------------------------------------------------------------------------------------
+
+
+-- RF6: Estado atual dos tratamentos e estoque de produtos
+SELECT 
+    Nome,                         -- Nome do tratamento
+    Fornecedor,                   -- Quem forneceu o tratamento
+    DataAplicacao,                -- Quando foi aplicado
+    QuantidadeUsada,              -- Quanto foi usado
+    QuantidadeEstoqueTotal,       -- Total disponível no estoque
+    (QuantidadeEstoqueTotal - QuantidadeUsada) AS QuantidadeRestante  -- Estoque atual disponível
+FROM 
+    Tratamentos;
+-- ------------------------------------------------------------------------------------
