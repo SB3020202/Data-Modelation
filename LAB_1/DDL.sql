@@ -120,12 +120,14 @@ ENGINE = InnoDB;
 -- Table `Sensores_IoT`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Sensores_IoT` (
+  `Sensores_IoTcol` VARCHAR(45) NULL,
   `ID` INT NOT NULL,
   `Cultivo_ID_Sensores` INT NULL,
   `Temperatura` FLOAT NULL,
-  ` humidadeSolo` FLOAT NULL,
+  `humidadeSolo` FLOAT NULL,
   `QualidadeAr` FLOAT NULL,
   `NivelIrrigacao` FLOAT NULL,
+  `luminosidade` FLOAT NULL,
   PRIMARY KEY (`ID`),
   INDEX `Cultivo_ID_idx` (`Cultivo_ID_Sensores` ASC),
   CONSTRAINT `Cultivo_ID_Sensores`
