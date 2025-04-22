@@ -10,6 +10,7 @@ WHERE NIF = 101000011;
 
 DELETE FROM Produtor
 WHERE NIF = 101000011;
+SELECT * FROM Produtor;
 -- ----------------------------------------------------------------------------
 
 
@@ -69,13 +70,13 @@ SELECT
 FROM 
     Cultivo
 WHERE 
-    Produtor_NIF_Cultivo = 101001001
+    Produtor_NIF_Cultivo = 101000001
     AND DataColhido BETWEEN '2024-03-01' AND '2024-06-30'
 ORDER BY 
     DataColhido DESC;
 -- ---------------------------------------------------------------------
 # DEBUG DO RF4
-SELECT * FROM Cultivo WHERE Produtor_NIF_Cultivo = 101000001;
+-- SELECT * FROM Cultivo WHERE Produtor_NIF_Cultivo = 101000001;
 SELECT * FROM vw_RF4_HistoricoColheitas;
 
 
