@@ -1,10 +1,12 @@
 ⚠️⚠️⚠️⚠️ TUDO PRECISA SER CONFIRMADO DESDE O INICIO ⚠️⚠️⚠️⚠️
 
 ✔️ RF1  ( Foi só feito para "Produtores", depois é Copy Paste para o resto das tabelas)
+
 ✔️ RF2  
 ✔️ RF3  
 ✔️ RF4  
 ❌ RF5  ( Código feito, mas resultado incorreto)
+
 ✔️ RF6  
 ✔️ RF7  
 ✔️ RF8  
