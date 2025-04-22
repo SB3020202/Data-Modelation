@@ -5,11 +5,13 @@
 ✔️ RF3  
 ✔️ RF4  
 ❌ RF5  ( Código feito, mas resultado incorreto)
+
 ✔️ RF6  
 ✔️ RF7  
 ✔️ RF8  
 ❌ RF9  
 ❌ RF10  
+
 ❌ RF11  
 ❌ RF12  
 ✔️ RF13  
