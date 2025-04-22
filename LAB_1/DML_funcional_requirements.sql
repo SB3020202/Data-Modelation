@@ -175,6 +175,80 @@ GROUP BY
     C.Tipo                                                -- Agrupa por tipo de cultura
 ORDER BY 
     ProducaoTotalKg DESC;                                 -- Ordena do mais produtivo para o menos produtivo
--- -----------------------------------------------------------------------------------------------
+-- -------------------------------------------------------------------------------------------------------------------
 -- Para consultar os resultados:
 SELECT * FROM vw_RF8_EficienciaRecursos;
+
+
+-- RF9 Proponha um requisito relevante e ainda por identificar que implique a criação e a especificação de uma ou mais entidades. Implemente
+-- "Listar os produtos mais vendidos por cada produtor."
+-- RF9: View para listar os produtos mais vendidos por cada produtor
+CREATE OR REPLACE VIEW vw_RF9_ProdutosMaisVendidos AS  -- Cria (ou substitui) uma view com o nome vw_RF9_ProdutosMaisVendidos
+SELECT 
+    PMV.ID,                                            -- ID do registo na tabela ProdutosMaisVendidos (auto_increment)
+    P.Name AS NomeProdutor,                            -- Nome do produtor, vindo da tabela Produtor
+    PMV.TipoProduto,                                   -- O tipo de produto vendido (ex: Tomate, Batata)
+    PMV.QuantidadeVendidaTotal                         -- Quantidade total vendida desse produto
+FROM 
+    ProdutosMaisVendidos PMV                           -- A view parte da tabela ProdutosMaisVendidos
+JOIN 
+    Produtor P ON P.NIF = PMV.Produtor_NIF_PMV         -- Junta com a tabela Produtor para ir buscar o nome do produtor
+ORDER BY 
+    PMV.QuantidadeVendidaTotal DESC;                   -- Ordena os resultados do mais vendido para o menos vendido
+-- ------------------------------------------------------------------------------------------------------------------------------------------
+SELECT * FROM vw_RF9_ProdutosMaisVendidos;
+#DEBUG
+-- Para ver se tabela está cheia ou nao
+SELECT * FROM ProdutosMaisVendidos;
+
+
+-- RF10: Produtores com cultivos do tipo 'Biológica' após 2024-03-01
+-- RF10: Produtores com cultivos do tipo 'Biológica' após 2024-03-01
+CREATE OR REPLACE VIEW vw_RF10_ProdutoresCultivoBiologico AS
+SELECT 
+    P.NIF,
+    P.Name AS NomeProdutor,
+    C.Tipo AS TipoCultura,
+    C.DataPlantado
+FROM 
+    Produtor P
+JOIN Cultivo C ON C.Produtor_NIF_Cultivo = P.NIF
+WHERE 
+    C.TipoPratica = 'Biológica'
+    AND C.DataPlantado > '2024-03-01';
+-- ------------------------------------------------------------------------------------
+SELECT * FROM vw_RF10_ProdutoresCultivoBiologico;
+
+
+-- RF 11 – Proponha um requisito relevante ainda por identificar e que requeira uma query com funções de agregação (sum, max, min, avg, etc) para o satisfazer. Implemente.
+-- Ver estatísticas de qualidade de colheitas por tipo de cultura
+-- RF11: Estatísticas da qualidade de colheitas por tipo de cultura
+CREATE OR REPLACE VIEW vw_RF11_EstatisticasQualidadePorCultura AS
+SELECT 
+    C.Tipo AS TipoCultura,                       -- Tipo de cultivo (ex: Tomate, Milho, etc)
+    COUNT(RP.Qualidade) AS TotalColheitas,      -- Total de registos dessa cultura
+    MIN(RP.Qualidade) AS QualidadeMinima,       -- Qualidade mínima registada
+    MAX(RP.Qualidade) AS QualidadeMaxima,       -- Qualidade máxima registada
+    ROUND(AVG(RP.Qualidade), 2) AS QualidadeMedia -- Qualidade média (arredondada a 2 casas)
+FROM 
+    RegistosProducao RP
+JOIN 
+    Cultivo C ON C.ID = RP.Cultivo_ID_Registos_Producao
+GROUP BY 
+    C.Tipo;
+-- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+SELECT * FROM vw_RF11_EstatisticasQualidadePorCultura;
+
+
+
+-- RF 12 – Proponha um requisito relevante ainda por identificar e que requeira o desenvolvimento de functions/procedures para o satisfazer. Implemente.
+-- Function para calcular e verificar a eficiência de um produtor
+SELECT 
+    P.NIF,                                               -- Mostra o NIF do produtor (chave primária)
+    P.Name AS NomeProdutor,                              -- Mostra o nome do produtor (renomeado como 'NomeProdutor')
+    fn_CalcularEficienciaProdutor(P.NIF) AS Eficiencia   -- Chama a função criada no RF12 e calcula a eficiência com base no NIF de cada produtor
+FROM 
+    Produtor P;                                          -- Tabela principal onde estão registados todos os produtores
+-- -----------------------------------------------------------------------------------------------------------------------------------------------------
+
+

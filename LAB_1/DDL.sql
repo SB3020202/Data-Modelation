@@ -327,6 +327,24 @@ CREATE TABLE IF NOT EXISTS `Distribuidores_has_RegistosProducao` (
 ENGINE = InnoDB;
 
 
+-- -----------------------------------------------------
+-- Table `ProdutosMaisVendidos`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `ProdutosMaisVendidos` (
+  `ID` INT NOT NULL AUTO_INCREMENT,
+  `Produtor_NIF_PMV` INT NULL,
+  `TipoProduto` VARCHAR(45) NULL,
+  `QuantidadeVendidaTotal` INT NULL,
+  PRIMARY KEY (`ID`),
+  INDEX `Produtor_NIF_PMV_idx` (`Produtor_NIF_PMV` ASC),
+  CONSTRAINT `Produtor_NIF_PMV`
+    FOREIGN KEY (`Produtor_NIF_PMV`)
+    REFERENCES `Produtor` (`NIF`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;

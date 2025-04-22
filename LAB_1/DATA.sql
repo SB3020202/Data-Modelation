@@ -82,3 +82,18 @@ INSERT INTO Gestao_Recursos (ID, Sensor_ID_GestaoRecursos, NIF_Produtor, Data, T
 (6, 6, 101000006, '2024-04-07', 'Água',        300,  20.00, 'Rega alfaces');
 
 
+-- RF9: Inserir os produtos mais vendidos por produtor
+INSERT INTO ProdutosMaisVendidos (Produtor_NIF_PMV, TipoProduto, QuantidadeVendidaTotal)
+SELECT 
+    P.NIF,                         -- O NIF do produtor
+    C.Tipo,                        -- O tipo de produto cultivado (ex: Tomate, Batata)
+    SUM(CZ.QuantidadeVendida)     -- A soma total das quantidades vendidas desse produto
+FROM 
+    Produtor P                    -- Começamos pela tabela de produtores
+JOIN Cultivo C ON C.Produtor_NIF_Cultivo = P.NIF   -- Ligamos cada produtor aos seus cultivos
+JOIN RegistosProducao RP ON RP.Cultivo_ID_Registos_Producao = C.ID   -- Ligamos cultivo aos registos de produção
+JOIN Comercializacao CZ ON CZ.LoteID_RegistosProducao = RP.LoteID    -- Ligamos registo de produção à comercialização
+GROUP BY P.NIF, C.Tipo;          -- Agrupamos os resultados por produtor e tipo de produto
+
+
+
