@@ -1,0 +1,103 @@
+% -------------------------------------------------------------
+% RESULTADOS ESPERADOS DOS TESTES
+% -------------------------------------------------------------
+
+% ---------------------------------- RF1 ----------------------------------
+% Gestão de Quintas
+
+% Deve ser verdadeiro:
+quinta(q1, 'Quinta Verde', lisboa).
+quinta(q1, 'Quinta Nova Verde', porto).
+
+% Deve ser falso (quinta removida):
+\+ quinta(q1, _, _).
+
+% ---------------------------------- RF2 ----------------------------------
+% Gestão de Sensores
+
+% Deve ser verdadeiro:
+sensor(s1, temperatura, q1).
+sensor(s1, humidade, q1).
+
+% Deve ser falso (sensor removido):
+\+ sensor(s1, _, _).
+
+% ---------------------------------- RF3 ----------------------------------
+% Produtores, Distribuidores, Transportadoras
+
+% Deve ser verdadeiro:
+produtor(p1, 'João', norte).
+produtor(p1, 'João Silva', centro).
+
+distribuidor(d1, 'Distribuidor1', centro).
+
+transportadora(t1, 'Transp1', 2000, gasoleo, [centro, sul]).
+
+% Deve ser falso (removidos):
+\+ produtor(p1, _, _).
+\+ distribuidor(d1, _, _).
+\+ transportadora(t1, _, _, _, _).
+
+% ---------------------------------- RF4 ----------------------------------
+% Ligações
+
+% Deve ser verdadeiro:
+ligacao(q1, d1, dados(50, 30, nacional, 10)).
+ligacao(q1, d1, dados(40, 25, autoestrada, 5)).
+
+% Deve ser falso:
+\+ ligacao(q1, d1, _).
+
+% ---------------------------------- RF5 ----------------------------------
+% Leituras e Consumos
+
+% Deve ser verdadeiro:
+leitura(s1, '2025-05-21T10:00', temperatura, 36).
+leitura(s1, '2025-05-21T10:00', temperatura, 30).
+
+consumo(q1, milho, 1000).
+consumo(q1, milho, 1500).
+
+% ---------------------------------- RF6 ----------------------------------
+% Listar sensores de uma quinta
+
+% Deve devolver:
+Lista6 = [(s2, temperatura, 'João Silva')].
+
+% ---------------------------------- RF7 ----------------------------------
+% Listar transportadoras por zona
+
+% Deve devolver:
+Lista7 = [(t2, 'Transp2')].
+
+% ---------------------------------- RF8 ----------------------------------
+% Leitura mais recente
+
+% Deve devolver:
+Tipo8 = temperatura,
+Valor8 = 28,
+Timestamp8 = '2025-05-22T12:00'.
+
+% ---------------------------------- RF9 ----------------------------------
+% Consumos por quinta
+
+% Deve devolver:
+Lista9 = [(milho, 1500), (tomate, 800)].
+
+% ---------------------------------- RF10 ----------------------------------
+% Sensores fora do limite
+
+% Deve devolver (ordem pode variar):
+Lista10 = [(s3, '2025-05-22T09:00', temperatura, 40),
+           (s5, '2025-05-22T08:00', humidade, 35)].
+
+% ---------------------------------- RF11 ----------------------------------
+% Rota mais curta entre quinta e distribuidor
+
+% Deve devolver:
+Caminho11 = [q1, x1, d1],
+Distancia11 = 30.
+
+% -------------------------------------------------------------
+% FIM DOS RESULTADOS ESPERADOS
+% -------------------------------------------------------------
