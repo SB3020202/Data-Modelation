@@ -1,36 +1,42 @@
-⚠️⚠️⚠️⚠️ TUDO PRECISA SER CONFIRMADO DESDE O INICIO ⚠️⚠️⚠️⚠️
+# MDE 2024-2025
 
-✔️ RF1  ( Foi só feito para "Produtores", depois é Copy Paste para o resto das tabelas)
+## MDE_LAB2
 
-✔️ RF2  
-✔️ RF3  
-✔️ RF4  
-❌ RF5  ( Código feito, mas resultado incorreto)
+| RF  | Description                                                                                                          | Status   |
+| :-- | :------------------------------------------------------------------------------------------------------------------- | :------- |
+| 1   | Adicionar/alterar/remover uma quinta na rede.                                                                        | **Done** |
+| 2   | Adicionar/alterar/remover sensores ambientais associados a uma quinta.                                               | **Done** |
+| 3   | Adicionar/alterar/remover produtores, distribuidores ou transportadoras.                                             | **Done** |
+| 4   | Adicionar/alterar/remover ligações entre nós da rede.                                                                | **Done** |
+| 5   | Registar e atualizar leituras dos sensores e consumos hídricos por quinta ou cultura.                                | **Done** |
+| 6   | Listar sensores associados a uma quinta específica identificando o produtor.                                         | **Done** |
+| 7   | Listar transportadoras disponíveis para uma determinada zona ou região.                                              | **Done** |
+| 8   | Consultar leituras mais recentes dos sensores.                                                                       | **Done** |
+| 9   | Consultar os consumos hídricos por cultura ou por quinta.                                                            | **Done** |
+| 10  | Listar sensores que ultrapassam limiares críticos.                                                                   | **Done** |
+| 11  | Determinar a rota mais curta entre uma quinta e um distribuidor.                                                     | **TODO** |
+| 12  | Determinar a rota com menor impacto ambiental, tendo em conta tipo de transporte.                                    | **TODO** |
+| 13  | Determinar a rota com passagem por distribuidor intermédio, se for mais sustentável.                                 | **TODO** |
+| 14  | Listar a transportadora ideal para uma rota com base em múltiplos critérios.                                         | **TODO** |
+| 15  | Definir e implementar uma funcionalidade adicional proposta pelos alunos.                                            | **TODO** |
+| 16  | Criação do servidor em SWI-Prolog disponibilizando as funcionalidades anteriores e criação de uma aplicação em Java. | **TODO** |
 
-✔️ RF6  
-✔️ RF7  
-✔️ RF8  
-❌ RF9  
-❌ RF10  
-
-❌ RF11  
-❌ RF12  
-✔️ RF13  
-✔️ RF14  
-
-
-# LAB 1 MDE 2024-2025
-*Não se esqueçam de fazer Update do trabalho feito antes de Uploadar a vossa parte (senão dá erro)*
-### Para fazer update com o trabalho dos outros
+### Update work
 
 ```bash
   git pull MDE master
 ```
 
-### Para fazer upload do vosso código
+### Upload work
 
 ```bash
   git add *
   git commit -m "descrevam +- o que fizeram"
   git push MDE master
 ```
+
+#### Authors
+
+- Guilherme Silva → [@guicdas](https://www.github.com/guicdas)
+- SidiMohammed Brahim → [@SB3020202](https://github.com/SB3020202)
+- Francisco Malho → [@](https://github.com/)
