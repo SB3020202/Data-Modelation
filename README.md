@@ -38,5 +38,5 @@
 #### Authors
 
 - Guilherme Silva → [@guicdas](https://www.github.com/guicdas)
-- SidiMohammed Brahim → [@SB3020202](https://github.com/SB3020202)
+- Sidi Brahim → [@SB3020202](https://github.com/SB3020202)
 - Francisco Malho → [@](https://github.com/)
