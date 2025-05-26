@@ -1,0 +1,40 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% RF8 - Testes %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% ---------------------------- Caso 1: Sensor com várias leituras, devolve a mais recente ----------------------------
+reset_bd.
+adicionar_quinta(q8_1, 'Quinta Sensores', centro).
+adicionar_sensor(s8_1, temperatura, q8_1).
+adicionar_leitura(s8_1, '2024-05-01T08:00', temperatura, 20).
+adicionar_leitura(s8_1, '2024-05-01T09:00', temperatura, 21).
+adicionar_leitura(s8_1, '2024-05-01T10:00', temperatura, 22).
+leitura_mais_recente(s8_1, Tipo, Valor, Timestamp).
+
+% Resultado esperado:
+% true.
+% Tipo = temperatura,
+% Valor = 22,
+% Timestamp = '2024-05-01T10:00'.
+
+
+% ---------------------------- Caso 2: Sensor com apenas uma leitura ----------------------------
+reset_bd.
+adicionar_quinta(q8_2, 'Quinta Única', centro).
+adicionar_sensor(s8_2, humidade, q8_2).
+adicionar_leitura(s8_2, '2024-05-01T12:00', humidade, 55).
+leitura_mais_recente(s8_2, Tipo, Valor, Timestamp).
+
+% Resultado esperado:
+% true.
+% Tipo = humidade,
+% Valor = 55,
+% Timestamp = '2024-05-01T12:00'.
+
+
+% ---------------------------- Caso 3: Sensor sem leituras ----------------------------
+reset_bd.
+adicionar_quinta(q8_3, 'Quinta Vazia', centro).
+adicionar_sensor(s8_3, temperatura, q8_3).
+leitura_mais_recente(s8_3, Tipo, Valor, Timestamp).
+
+% Resultado esperado:
+% false.

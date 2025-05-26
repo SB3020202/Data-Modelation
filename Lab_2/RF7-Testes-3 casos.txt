@@ -1,0 +1,36 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% RF7 - Testes %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% ---------------------------- Caso 1: Zona com múltiplas transportadoras ----------------------------
+reset_bd.
+adicionar_transportadora(t7_1, 'TransCentro', 1000, eletrico, [centro, sul]).
+adicionar_transportadora(t7_2, 'FastMove', 800, fossil, [norte, centro]).
+adicionar_transportadora(t7_3, 'EcoLine', 900, hibrido, [norte]).
+
+listar_transportadoras_zona(centro, Lista).
+
+% Resultado esperado:
+% true.
+% Lista = [(t7_1, 'TransCentro'), (t7_2, 'FastMove')].
+
+
+% ---------------------------- Caso 2: Zona com uma única transportadora ----------------------------
+reset_bd.
+adicionar_transportadora(t7_4, 'SoloTrans', 600, eletrico, [sul]).
+
+listar_transportadoras_zona(sul, Lista).
+
+% Resultado esperado:
+% true.
+% Lista = [(t7_4, 'SoloTrans')].
+
+
+% ---------------------------- Caso 3: Zona sem nenhuma transportadora ----------------------------
+reset_bd.
+adicionar_transportadora(t7_5, 'CentroLog', 700, fossil, [centro]).
+
+listar_transportadoras_zona(norte, Lista).
+
+% Resultado esperado:
+% true.
+% Lista = [].
+
