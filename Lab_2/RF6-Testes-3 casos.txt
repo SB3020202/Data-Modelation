@@ -1,0 +1,36 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% RF6 - Testes %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% ---------------------------- Caso 1: Quinta com múltiplos sensores e produtor associado ----------------------------
+reset_bd.
+adicionar_produtor(p6_1, 'João Silva', centro).
+adicionar_quinta(q6_1, 'Quinta do Sol', centro).
+assertz(dono(p6_1, q6_1)).
+adicionar_sensor(s6_1, temperatura, q6_1).
+adicionar_sensor(s6_2, humidade, q6_1).
+listar_sensores_quinta(q6_1, Lista).
+
+% Resultado esperado:
+% true.
+% Lista = [(s6_1, temperatura, 'João Silva'), (s6_2, humidade, 'João Silva')].
+
+
+% ---------------------------- Caso 2: Quinta sem sensores ----------------------------
+reset_bd.
+adicionar_produtor(p6_2, 'Maria Luz', sul).
+adicionar_quinta(q6_2, 'Quinta das Oliveiras', sul).
+assertz(dono(p6_2, q6_2)).
+listar_sensores_quinta(q6_2, Lista).
+
+% Resultado esperado:
+% true.
+% Lista = [].
+
+
+% ---------------------------- Caso 3: Quinta sem produtor associado ----------------------------
+reset_bd.
+adicionar_quinta(q6_3, 'Quinta Perdida', norte).
+adicionar_sensor(s6_3, temperatura, q6_3).
+listar_sensores_quinta(q6_3, Lista).
+
+% Resultado esperado:
+% false.

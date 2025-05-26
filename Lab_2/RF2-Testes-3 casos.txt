@@ -1,0 +1,35 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% RF2 - Testes %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% ---------------------------- Caso 1: Adicionar e verificar sensor ----------------------------
+reset_bd.
+adicionar_quinta(q2_1, 'Quinta Sensorial', norte).
+adicionar_sensor(s2_1, temperatura, q2_1).
+sensor(s2_1, Tipo, Quinta).
+
+% Resultado esperado:
+% true.
+% Tipo = temperatura, Quinta = q2_1.
+
+
+% ---------------------------- Caso 2: Remover sensor ----------------------------
+reset_bd.
+adicionar_quinta(q2_2, 'Quinta Removida', centro).
+adicionar_sensor(s2_2, humidade, q2_2).
+remover_sensor(s2_2).
+sensor(s2_2, _, _).
+
+% Resultado esperado:
+% false.
+
+
+% ---------------------------- Caso 3: Alterar sensor ----------------------------
+reset_bd.
+adicionar_quinta(q2_3a, 'Quinta Original', norte).
+adicionar_quinta(q2_3b, 'Quinta Nova', sul).
+adicionar_sensor(s2_3, humidade, q2_3a).
+alterar_sensor(s2_3, temperatura, q2_3b).
+sensor(s2_3, Tipo, Quinta).
+
+% Resultado esperado:
+% true.
+% Tipo = temperatura, Quinta = q2_3b.
