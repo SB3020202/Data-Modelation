@@ -16,8 +16,8 @@
 | 10  | Listar sensores que ultrapassam limiares críticos.                                                                   |   ✅ Done    |
 | 11  | Determinar a rota mais curta entre uma quinta e um distribuidor.                                                     |   ✅ Done    |
 | 12  | Determinar a rota com menor impacto ambiental, tendo em conta tipo de transporte.                                    |   ✅ Done    |
-| 13  | Determinar a rota com passagem por distribuidor intermédio, se for mais sustentável.                                 |   🟥 TODO    |
-| 14  | Listar a transportadora ideal para uma rota com base em múltiplos critérios.                                         |   🟥 TODO    |
+| 13  | Determinar a rota com passagem por distribuidor intermédio, se for mais sustentável.                                 |   ✅ Done    |
+| 14  | Listar a transportadora ideal para uma rota com base em múltiplos critérios.                                         |   ⚠️ DEBBUG  |
 | 15  | Definir e implementar uma funcionalidade adicional proposta pelos alunos.                                            |   🟥 TODO    |
 | 16  | Criação do servidor em SWI-Prolog disponibilizando as funcionalidades anteriores e criação de uma aplicação em Java. |   🟥 TODO    |
 
