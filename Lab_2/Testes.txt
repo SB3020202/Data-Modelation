@@ -1,0 +1,135 @@
+% -------------------------------------------------------------
+% TESTES PARA VERIFICAÇÃO DOS REQUISITOS
+% -------------------------------------------------------------
+
+% ---------------------------------- RF1 ----------------------------------
+% Gestão de Quintas
+
+adicionar_quinta(q1, 'Quinta Verde', lisboa),
+quinta(q1, 'Quinta Verde', lisboa),
+
+alterar_quinta(q1, 'Quinta Nova Verde', porto),
+quinta(q1, 'Quinta Nova Verde', porto),
+
+remover_quinta(q1),
+\+ quinta(q1, _, _).
+
+% ---------------------------------- RF2 ----------------------------------
+% Gestão de Sensores
+
+adicionar_quinta(q1, 'Q1', lisboa),
+adicionar_sensor(s1, temperatura, q1),
+sensor(s1, temperatura, q1),
+
+alterar_sensor(s1, humidade, q1),
+sensor(s1, humidade, q1),
+
+remover_sensor(s1),
+\+ sensor(s1, _, _).
+
+% ---------------------------------- RF3 ----------------------------------
+% Produtores, Distribuidores, Transportadoras
+
+adicionar_produtor(p1, 'João', norte),
+produtor(p1, 'João', norte),
+
+alterar_produtor(p1, 'João Silva', centro),
+produtor(p1, 'João Silva', centro),
+
+adicionar_distribuidor(d1, 'Distribuidor1', centro),
+distribuidor(d1, 'Distribuidor1', centro),
+
+adicionar_transportadora(t1, 'Transp1', 2000, gasoleo, [centro, sul]),
+transportadora(t1, 'Transp1', 2000, gasoleo, [centro, sul]),
+
+remover_produtor(p1),
+remover_distribuidor(d1),
+remover_transportadora(t1),
+
+\+ produtor(p1, _, _),
+\+ distribuidor(d1, _, _),
+\+ transportadora(t1, _, _, _, _).
+
+% ---------------------------------- RF4 ----------------------------------
+% Ligações
+
+adicionar_ligacao(q1, d1, 50, 30, nacional, 10),
+ligacao(q1, d1, dados(50, 30, nacional, 10)),
+
+alterar_ligacao(q1, d1, 40, 25, autoestrada, 5),
+ligacao(q1, d1, dados(40, 25, autoestrada, 5)),
+
+remover_ligacao(q1, d1),
+\+ ligacao(q1, d1, _).
+
+% ---------------------------------- RF5 ----------------------------------
+% Leituras e Consumos
+
+adicionar_leitura(s1, '2025-05-21T10:00', temperatura, 36),
+leitura(s1, '2025-05-21T10:00', temperatura, 36),
+
+atualizar_leitura(s1, '2025-05-21T10:00', temperatura, 30),
+leitura(s1, '2025-05-21T10:00', temperatura, 30),
+
+adicionar_consumo(q1, milho, 1000),
+consumo(q1, milho, 1000),
+
+atualizar_consumo(q1, milho, 1500),
+consumo(q1, milho, 1500).
+
+% ---------------------------------- RF6 ----------------------------------
+% Listar sensores de uma quinta (assumindo dono definido)
+
+assertz(dono(p1, q1)),
+assertz(produtor(p1, 'João Silva', norte)),
+assertz(sensor(s2, temperatura, q1)),
+listar_sensores_quinta(q1, Lista6),
+Lista6 = [(s2, temperatura, 'João Silva')].
+
+% ---------------------------------- RF7 ----------------------------------
+% Listar transportadoras por zona
+
+adicionar_transportadora(t2, 'Transp2', 3000, eletrico, [norte, lisboa]),
+listar_transportadoras_zona(lisboa, Lista7),
+Lista7 = [(t2, 'Transp2')].
+
+% ---------------------------------- RF8 ----------------------------------
+% Leitura mais recente
+
+assertz(leitura(s2, '2025-05-20T10:00', temperatura, 22)),
+assertz(leitura(s2, '2025-05-22T12:00', temperatura, 28)),
+leitura_mais_recente(s2, Tipo8, Valor8, Timestamp8),
+Tipo8 = temperatura,
+Valor8 = 28,
+Timestamp8 = '2025-05-22T12:00'.
+
+% ---------------------------------- RF9 ----------------------------------
+% Consumos por quinta
+
+adicionar_consumo(q1, tomate, 800),
+consumos_por_quinta(q1, Lista9),
+Lista9 = [(milho, 1500), (tomate, 800)].
+
+% ---------------------------------- RF10 ----------------------------------
+% Sensores fora do limite
+
+assertz(leitura(s3, '2025-05-22T09:00', temperatura, 40)),
+assertz(leitura(s4, '2025-05-22T08:00', humidade, 25)),
+assertz(leitura(s5, '2025-05-22T08:00', humidade, 35)), % fora do limite
+
+recolha_sensores_fora_do_limite(Lista10),
+Lista10 = [(s3, '2025-05-22T09:00', temperatura, 40),
+           (s5, '2025-05-22T08:00', humidade, 35)].
+
+% ---------------------------------- RF11 ----------------------------------
+% Rota mais curta entre quinta e distribuidor
+
+assertz(ligacao(q1, x1, dados(10, 20, nacional, 5))),
+assertz(ligacao(x1, d1, dados(20, 30, nacional, 10))),
+rota_mais_curta_quinta_distri(q1, d1, Caminho11, Distancia11),
+Caminho11 = [q1, x1, d1],
+Distancia11 = 30.
+
+% -------------------------------------------------------------
+% FIM DOS TESTES
+% -------------------------------------------------------------
