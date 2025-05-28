@@ -1,0 +1,1103 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% RF1 - Testes %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% ---------------------------- Caso 1: Adicionar e verificar quinta ----------------------------
+reset_bd.
+adicionar_quinta(q1_1, 'Quinta Verde', norte).
+quinta(q1_1, Nome, Zona).
+
+% Resultado esperado:
+% true.
+% Nome = 'Quinta Verde', Zona = norte.
+
+
+% ---------------------------- Caso 2: Remover quinta ----------------------------
+reset_bd.
+adicionar_quinta(q1_2, 'Quinta Removida', centro).
+remover_quinta(q1_2).
+quinta(q1_2, _, _).
+
+% Resultado esperado:
+% false.
+
+
+% ---------------------------- Caso 3: Alterar dados da quinta ----------------------------
+reset_bd.
+adicionar_quinta(q1_3, 'Quinta Original', centro).
+alterar_quinta(q1_3, 'Quinta Nova', sul).
+quinta(q1_3, Nome, Zona).
+
+% Resultado esperado:
+% true.
+% Nome = 'Quinta Nova', Zona = sul.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% RF2 - Testes %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% ---------------------------- Caso 1: Adicionar e verificar sensor ----------------------------
+reset_bd.
+adicionar_quinta(q2_1, 'Quinta Sensorial', norte).
+adicionar_sensor(s2_1, temperatura, q2_1).
+sensor(s2_1, Tipo, Quinta).
+
+% Resultado esperado:
+% true.
+% Tipo = temperatura, Quinta = q2_1.
+
+
+% ---------------------------- Caso 2: Remover sensor ----------------------------
+reset_bd.
+adicionar_quinta(q2_2, 'Quinta Removida', centro).
+adicionar_sensor(s2_2, humidade, q2_2).
+remover_sensor(s2_2).
+sensor(s2_2, _, _).
+
+% Resultado esperado:
+% false.
+
+
+% ---------------------------- Caso 3: Alterar sensor ----------------------------
+reset_bd.
+adicionar_quinta(q2_3a, 'Quinta Original', norte).
+adicionar_quinta(q2_3b, 'Quinta Nova', sul).
+adicionar_sensor(s2_3, humidade, q2_3a).
+alterar_sensor(s2_3, temperatura, q2_3b).
+sensor(s2_3, Tipo, Quinta).
+
+% Resultado esperado:
+% true.
+% Tipo = temperatura, Quinta = q2_3b.
+
+
+
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% RF3 - Testes %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% ---------------------------- Caso 1: Adicionar e verificar produtor ----------------------------
+reset_bd.
+adicionar_produtor(p1, 'Produtor Norte', norte).
+produtor(p1, Nome, Zona).
+
+% Resultado esperado:
+% true.
+% Nome = 'Produtor Norte', Zona = norte.
+
+% ---------------------------- Caso 2: Remover produtor ----------------------------
+reset_bd.
+adicionar_produtor(p2, 'Produtor Sul', sul).
+remover_produtor(p2).
+produtor(p2, _, _).
+
+% Resultado esperado:
+% false.
+
+% ---------------------------- Caso 3: Alterar produtor ----------------------------
+reset_bd.
+adicionar_produtor(p3, 'Produtor Antigo', centro).
+alterar_produtor(p3, 'Produtor Novo', norte).
+produtor(p3, Nome, Zona).
+
+% Resultado esperado:
+% true.
+% Nome = 'Produtor Novo', Zona = norte.
+
+% ---------------------------- Caso 4: Adicionar e verificar distribuidor ----------------------------
+reset_bd.
+adicionar_distribuidor(d1, 'Distribuidor Centro', centro).
+distribuidor(d1, Nome, Zona).
+
+% Resultado esperado:
+% true.
+% Nome = 'Distribuidor Centro', Zona = centro.
+
+% ---------------------------- Caso 5: Remover distribuidor ----------------------------
+reset_bd.
+adicionar_distribuidor(d2, 'Distribuidor Antigo', sul).
+remover_distribuidor(d2).
+distribuidor(d2, _, _).
+
+% Resultado esperado:
+% false.
+
+% ---------------------------- Caso 6: Alterar distribuidor ----------------------------
+reset_bd.
+adicionar_distribuidor(d3, 'Distribuidor Inicial', norte).
+alterar_distribuidor(d3, 'Distribuidor Atualizado', centro).
+distribuidor(d3, Nome, Zona).
+
+% Resultado esperado:
+% true.
+% Nome = 'Distribuidor Atualizado', Zona = centro.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% RF4 - Testes %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% ---------------------------- Caso 1: Adicionar uma ligação ----------------------------
+reset_bd.
+adicionar_quinta(q4_1, 'Quinta Ligar', norte).
+adicionar_distribuidor(d4_1, 'Distribuidor Ligar', centro).
+adicionar_ligacao(q4_1, d4_1, 10, 20, estrada, 5).
+ligacao(q4_1, d4_1, Dados).
+
+% Resultado esperado:
+% true.
+% Dados = dados(10, 20, estrada, 5).
+
+
+% ---------------------------- Caso 2: Remover uma ligação existente ----------------------------
+reset_bd.
+adicionar_quinta(q4_2, 'Quinta Desligar', norte).
+adicionar_distribuidor(d4_2, 'Distribuidor Desligar', centro).
+adicionar_ligacao(q4_2, d4_2, 15, 30, estrada, 6).
+remover_ligacao(q4_2, d4_2).
+ligacao(q4_2, d4_2, _).
+
+% Resultado esperado:
+% true.
+% false.
+
+
+% ---------------------------- Caso 3: Alterar uma ligação ----------------------------
+reset_bd.
+adicionar_quinta(q4_3, 'Quinta Atualizar', norte).
+adicionar_distribuidor(d4_3, 'Distribuidor Atualizar', centro).
+adicionar_ligacao(q4_3, d4_3, 20, 40, autoestrada, 7).
+alterar_ligacao(q4_3, d4_3, 12, 25, estrada, 4).
+ligacao(q4_3, d4_3, Dados).
+
+% Resultado esperado:
+% true.
+% Dados = dados(12, 25, estrada, 4).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% RF5 - Testes %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% ---------------------------- Caso 1: Adicionar leitura ----------------------------
+reset_bd.
+adicionar_quinta(q5_1, 'Quinta Leitura', centro).
+adicionar_sensor(s5_1, temperatura, q5_1).
+adicionar_leitura(s5_1, '2024-05-01T08:00', temperatura, 25).
+leitura(s5_1, '2024-05-01T08:00', Tipo, Valor).
+
+% Resultado esperado:
+% true.
+% Tipo = temperatura, Valor = 25.
+
+
+% ---------------------------- Caso 2: Atualizar leitura existente ----------------------------
+reset_bd.
+adicionar_quinta(q5_2, 'Quinta Atualiza', centro).
+adicionar_sensor(s5_2, temperatura, q5_2).
+adicionar_leitura(s5_2, '2024-05-01T08:00', temperatura, 25).
+atualizar_leitura(s5_2, '2024-05-01T08:00', temperatura, 30).
+leitura(s5_2, '2024-05-01T08:00', Tipo, Valor).
+
+% Resultado esperado:
+% true.
+% Tipo = temperatura, Valor = 30.
+
+
+% ---------------------------- Caso 3: Adicionar consumo ----------------------------
+reset_bd.
+adicionar_quinta(q5_3, 'Quinta Consumo', centro).
+adicionar_consumo(q5_3, milho, 500).
+consumo(q5_3, Cultura, Litros).
+
+% Resultado esperado:
+% true.
+% Cultura = milho, Litros = 500.
+
+
+% ---------------------------- Caso 4: Atualizar consumo existente ----------------------------
+reset_bd.
+adicionar_quinta(q5_4, 'Quinta Rega', centro).
+adicionar_consumo(q5_4, tomate, 300).
+atualizar_consumo(q5_4, tomate, 450).
+consumo(q5_4, Cultura, Litros).
+
+% Resultado esperado:
+% true.
+% Cultura = tomate, Litros = 450.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% RF6 - Testes %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% ---------------------------- Caso 1: Quinta com múltiplos sensores e produtor associado ----------------------------
+reset_bd.
+adicionar_produtor(p6_1, 'João Silva', centro).
+adicionar_quinta(q6_1, 'Quinta do Sol', centro).
+assertz(dono(p6_1, q6_1)).
+adicionar_sensor(s6_1, temperatura, q6_1).
+adicionar_sensor(s6_2, humidade, q6_1).
+listar_sensores_quinta(q6_1, Lista).
+
+% Resultado esperado:
+% true.
+% Lista = [(s6_1, temperatura, 'João Silva'), (s6_2, humidade, 'João Silva')].
+
+
+% ---------------------------- Caso 2: Quinta sem sensores ----------------------------
+reset_bd.
+adicionar_produtor(p6_2, 'Maria Luz', sul).
+adicionar_quinta(q6_2, 'Quinta das Oliveiras', sul).
+assertz(dono(p6_2, q6_2)).
+listar_sensores_quinta(q6_2, Lista).
+
+% Resultado esperado:
+% true.
+% Lista = [].
+
+
+% ---------------------------- Caso 3: Quinta sem produtor associado ----------------------------
+reset_bd.
+adicionar_quinta(q6_3, 'Quinta Perdida', norte).
+adicionar_sensor(s6_3, temperatura, q6_3).
+listar_sensores_quinta(q6_3, Lista).
+
+% Resultado esperado:
+% false.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% RF7 - Testes %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% ---------------------------- Caso 1: Zona com múltiplas transportadoras ----------------------------
+reset_bd.
+adicionar_transportadora(t7_1, 'TransCentro', 1000, eletrico, [centro, sul]).
+adicionar_transportadora(t7_2, 'FastMove', 800, fossil, [norte, centro]).
+adicionar_transportadora(t7_3, 'EcoLine', 900, hibrido, [norte]).
+
+listar_transportadoras_zona(centro, Lista).
+
+% Resultado esperado:
+% true.
+% Lista = [(t7_1, 'TransCentro'), (t7_2, 'FastMove')].
+
+
+% ---------------------------- Caso 2: Zona com uma única transportadora ----------------------------
+reset_bd.
+adicionar_transportadora(t7_4, 'SoloTrans', 600, eletrico, [sul]).
+
+listar_transportadoras_zona(sul, Lista).
+
+% Resultado esperado:
+% true.
+% Lista = [(t7_4, 'SoloTrans')].
+
+
+% ---------------------------- Caso 3: Zona sem nenhuma transportadora ----------------------------
+reset_bd.
+adicionar_transportadora(t7_5, 'CentroLog', 700, fossil, [centro]).
+
+listar_transportadoras_zona(norte, Lista).
+
+% Resultado esperado:
+% true.
+% Lista = [].
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% RF8 - Testes %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% ---------------------------- Caso 1: Sensor com várias leituras, devolve a mais recente ----------------------------
+reset_bd.
+adicionar_quinta(q8_1, 'Quinta Sensores', centro).
+adicionar_sensor(s8_1, temperatura, q8_1).
+adicionar_leitura(s8_1, '2024-05-01T08:00', temperatura, 20).
+adicionar_leitura(s8_1, '2024-05-01T09:00', temperatura, 21).
+adicionar_leitura(s8_1, '2024-05-01T10:00', temperatura, 22).
+leitura_mais_recente(s8_1, Tipo, Valor, Timestamp).
+
+% Resultado esperado:
+% true.
+% Tipo = temperatura,
+% Valor = 22,
+% Timestamp = '2024-05-01T10:00'.
+
+
+% ---------------------------- Caso 2: Sensor com apenas uma leitura ----------------------------
+reset_bd.
+adicionar_quinta(q8_2, 'Quinta Única', centro).
+adicionar_sensor(s8_2, humidade, q8_2).
+adicionar_leitura(s8_2, '2024-05-01T12:00', humidade, 55).
+leitura_mais_recente(s8_2, Tipo, Valor, Timestamp).
+
+% Resultado esperado:
+% true.
+% Tipo = humidade,
+% Valor = 55,
+% Timestamp = '2024-05-01T12:00'.
+
+
+% ---------------------------- Caso 3: Sensor sem leituras ----------------------------
+reset_bd.
+adicionar_quinta(q8_3, 'Quinta Vazia', centro).
+adicionar_sensor(s8_3, temperatura, q8_3).
+leitura_mais_recente(s8_3, Tipo, Valor, Timestamp).
+
+% Resultado esperado:
+% false.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% RF9 - Testes %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% ---------------------------- Caso 1: Uma quinta com vários consumos ----------------------------
+reset_bd.
+adicionar_quinta(q9_1, 'Quinta Verde', centro).
+adicionar_consumo(q9_1, milho, 500).
+adicionar_consumo(q9_1, tomate, 300).
+consumos_por_quinta(q9_1, Lista).
+
+% Resultado esperado:
+% true.
+% Lista = [(milho, 500), (tomate, 300)].
+
+
+% ---------------------------- Caso 2: Cultura presente em várias quintas ----------------------------
+reset_bd.
+adicionar_quinta(q9_2a, 'Quinta A', centro).
+adicionar_quinta(q9_2b, 'Quinta B', centro).
+adicionar_consumo(q9_2a, milho, 500).
+adicionar_consumo(q9_2b, milho, 700).
+consumos_por_cultura(milho, Lista).
+
+% Resultado esperado:
+% true.
+% Lista = [(q9_2a, 500), (q9_2b, 700)].
+
+
+% ---------------------------- Caso 3: Quinta sem consumos registados ----------------------------
+reset_bd.
+adicionar_quinta(q9_3, 'Quinta Vazia', centro).
+consumos_por_quinta(q9_3, Lista).
+
+% Resultado esperado:
+% true.
+% Lista = [].
+
+
+% ---------------------------- Caso 4: Cultura não existente ----------------------------
+reset_bd.
+adicionar_quinta(q9_4, 'Quinta Fantasma', centro).
+consumos_por_cultura(uvas, Lista).
+
+% Resultado esperado:
+% true.
+% Lista = [].
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% RF10 - Testes %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% ---------------------------- Caso 1: Sensor com leitura acima do limite (temperatura) ----------------------------
+reset_bd.
+adicionar_quinta(q10_1, 'Quinta Alta', centro).
+adicionar_sensor(s10_1, temperatura, q10_1).
+adicionar_leitura(s10_1, '2024-05-01T10:00', temperatura, 40).
+recolha_sensores_fora_do_limite(Lista).
+
+% Resultado esperado:
+% true.
+% Lista = [(s10_1, '2024-05-01T10:00', temperatura, 40)].
+
+
+% ---------------------------- Caso 2: Sensor com leitura dentro do limite (temperatura) ----------------------------
+reset_bd.
+adicionar_quinta(q10_2, 'Quinta Estável', centro).
+adicionar_sensor(s10_2, temperatura, q10_2).
+adicionar_leitura(s10_2, '2024-05-01T10:00', temperatura, 30).
+recolha_sensores_fora_do_limite(Lista).
+
+% Resultado esperado:
+% true.
+% Lista = [].
+
+
+% ---------------------------- Caso 3: Sensor com leitura abaixo do limite (humidade) ----------------------------
+reset_bd.
+adicionar_quinta(q10_3, 'Quinta Seca', centro).
+adicionar_sensor(s10_3, humidade, q10_3).
+adicionar_leitura(s10_3, '2024-05-01T10:00', humidade, 25).
+recolha_sensores_fora_do_limite(Lista).
+
+% Resultado esperado:
+% true.
+% Lista = [(s10_3, '2024-05-01T10:00', humidade, 25)].
+
+
+% ---------------------------- Caso 4: Leitura mais recente está dentro do limite ----------------------------
+reset_bd.
+adicionar_quinta(q10_4, 'Quinta Histórica', centro).
+adicionar_sensor(s10_4, temperatura, q10_4).
+adicionar_leitura(s10_4, '2024-05-01T08:00', temperatura, 40).
+adicionar_leitura(s10_4, '2024-05-01T10:00', temperatura, 34).
+recolha_sensores_fora_do_limite(Lista).
+
+% Resultado esperado:
+% true.
+% Lista = [].
+
+
+% ---------------------------- Caso 5: Vários sensores, apenas alguns fora do limite ----------------------------
+reset_bd.
+adicionar_quinta(q10_5, 'Quinta Mista', centro).
+adicionar_sensor(s10_5a, temperatura, q10_5).
+adicionar_sensor(s10_5b, humidade, q10_5).
+adicionar_sensor(s10_5c, humidade, q10_5).
+adicionar_leitura(s10_5a, '2024-05-01T09:00', temperatura, 36).
+adicionar_leitura(s10_5b, '2024-05-01T09:00', humidade, 31).
+adicionar_leitura(s10_5c, '2024-05-01T09:00', humidade, 20).
+recolha_sensores_fora_do_limite(Lista).
+
+% Resultado esperado:
+% true.
+% Lista = [(s10_5a, '2024-05-01T09:00', temperatura, 36), (s10_5c, '2024-05-01T09:00', humidade, 20)].
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% RF11 - Testes %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% ---------------------------- Caso 1: Apenas uma rota com menor distância ----------------------------
+reset_bd.
+adicionar_quinta(q11_1, 'Quinta Solo', norte).
+adicionar_distribuidor(d11_1, 'Distribuidor Único', centro).
+adicionar_ligacao(q11_1, n1, 4, 8, estrada, 2).
+adicionar_ligacao(n1, d11_1, 6, 12, estrada, 3).
+adicionar_ligacao(q11_1, n2, 6, 10, estrada, 2).
+adicionar_ligacao(n2, d11_1, 6, 10, estrada, 3).
+rotas_mais_curtas_quinta_distri(q11_1, d11_1, Caminhos, Distancia).
+
+% Resultado esperado:
+% true.
+% Caminhos = [[q11_1, n1, d11_1]]
+% Distancia = 10
+
+
+% ---------------------------- Caso 2: Duas rotas com a mesma distância mínima ----------------------------
+reset_bd.
+adicionar_quinta(q11_2, 'Quinta Empate', norte).
+adicionar_distribuidor(d11_2, 'Distribuidor Final', centro).
+adicionar_ligacao(q11_2, a1, 4, 8, estrada, 2).
+adicionar_ligacao(a1, d11_2, 6, 12, estrada, 3).  % total = 10
+adicionar_ligacao(q11_2, b1, 5, 9, estrada, 2).
+adicionar_ligacao(b1, d11_2, 5, 11, estrada, 3).  % total = 10
+rotas_mais_curtas_quinta_distri(q11_2, d11_2, Caminhos, Distancia).
+
+% Resultado esperado:
+% true.
+% Caminhos = [[q11_2, a1, d11_2], [q11_2, b1, d11_2]]
+% Distancia = 10
+
+
+% ---------------------------- Caso 3: Caminho mais longo com mais nós, mas menor distância ----------------------------
+reset_bd.
+adicionar_quinta(q11_3, 'Quinta Caminho Longo', norte).
+adicionar_distribuidor(d11_3, 'Distribuidor Final', centro).
+adicionar_ligacao(q11_3, c1, 2, 3, estrada, 1).
+adicionar_ligacao(c1, c2, 2, 3, estrada, 1).
+adicionar_ligacao(c2, d11_3, 2, 3, estrada, 1).
+adicionar_ligacao(q11_3, d11_3, 10, 10, estrada, 1).
+rotas_mais_curtas_quinta_distri(q11_3, d11_3, Caminhos, Distancia).
+
+% Resultado esperado:
+% true.
+% Caminhos = [[q11_3, c1, c2, d11_3]]
+% Distancia = 6
+
+
+% ---------------------------- Caso 4: Não existe caminho entre origem e destino ----------------------------
+reset_bd.
+adicionar_quinta(q11_4, 'Quinta Isolada', norte).
+adicionar_distribuidor(d11_4, 'Distribuidor Sem Ligação', centro).
+rotas_mais_curtas_quinta_distri(q11_4, d11_4, Caminhos, Distancia).
+
+% Resultado esperado:
+% false.
+% Nenhuma rota encontrada.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% RF12 - Testes COMPLETOS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% ---------------------------- Caso 1: Apenas um caminho possível ----------------------------
+reset_bd.
+adicionar_impacto.
+adicionar_quinta(q12_1, 'Quinta Simples', centro).
+adicionar_distribuidor(d12_1, 'Distribuidor Único', centro).
+adicionar_ligacao(q12_1, x1, 5, 10, estrada, 2).
+adicionar_ligacao(x1, d12_1, 5, 10, estrada, 2).
+rotas_com_menor_impacto_ambiental(q12_1, d12_1, eletrico, Rotas, Impacto).
+
+% Resultado esperado:
+% true.
+% Rotas = [[q12_1, x1, d12_1]]
+% Impacto = 5.0
+
+
+% ---------------------------- Caso 2: Vários caminhos, um com menor impacto ----------------------------
+reset_bd.
+adicionar_impacto.
+adicionar_quinta(q12_2, 'Quinta Opções', centro).
+adicionar_distribuidor(d12_2, 'Distribuidor Opções', centro).
+adicionar_ligacao(q12_2, a2, 3, 6, estrada, 2).
+adicionar_ligacao(a2, d12_2, 3, 6, estrada, 2).
+adicionar_ligacao(q12_2, b2, 5, 10, estrada, 2).
+adicionar_ligacao(b2, d12_2, 6, 12, estrada, 2).
+rotas_com_menor_impacto_ambiental(q12_2, d12_2, eletrico, Rotas, Impacto).
+
+% Resultado esperado:
+% true.
+% Rotas = [[q12_2, a2, d12_2]]
+% Impacto = 3.0
+
+
+% ---------------------------- Caso 3: Dois caminhos com o mesmo impacto ----------------------------
+reset_bd.
+adicionar_impacto.
+adicionar_quinta(q12_3, 'Quinta Empate', centro).
+adicionar_distribuidor(d12_3, 'Distribuidor Empate', centro).
+adicionar_ligacao(q12_3, a1, 4, 10, estrada, 2).
+adicionar_ligacao(a1, d12_3, 6, 10, estrada, 2).
+adicionar_ligacao(q12_3, b1, 5, 10, estrada, 2).
+adicionar_ligacao(b1, d12_3, 5, 10, estrada, 2).
+rotas_com_menor_impacto_ambiental(q12_3, d12_3, eletrico, Rotas, Impacto).
+
+% Resultado esperado:
+% true.
+% Rotas = [[q12_3, a1, d12_3], [q12_3, b1, d12_3]]
+% Impacto = 5.0
+
+
+% ---------------------------- Caso 4: Caminho indireto tem menor impacto ----------------------------
+reset_bd.
+adicionar_impacto.
+adicionar_quinta(q12_4, 'Quinta Alternativa', centro).
+adicionar_distribuidor(d12_4, 'Distribuidor Direto', centro).
+adicionar_ligacao(q12_4, d12_4, 20, 30, autoestrada, 5).  % direta
+adicionar_ligacao(q12_4, alt1, 5, 10, estrada, 2).
+adicionar_ligacao(alt1, alt2, 5, 10, estrada, 2).
+adicionar_ligacao(alt2, d12_4, 5, 10, estrada, 2).        % indireta
+rotas_com_menor_impacto_ambiental(q12_4, d12_4, eletrico, Rotas, Impacto).
+
+% Resultado esperado:
+% true.
+% Rotas = [[q12_4, alt1, alt2, d12_4]]
+% Impacto = 7.5
+
+
+% ---------------------------- Caso 5: Impacto varia com tipo de transporte ----------------------------
+reset_bd.
+adicionar_impacto.
+adicionar_quinta(q12_5, 'Quinta Transporte', centro).
+adicionar_distribuidor(d12_5, 'Distribuidor Transporte', centro).
+adicionar_ligacao(q12_5, mid1, 5, 10, estrada, 2).
+adicionar_ligacao(mid1, d12_5, 5, 10, estrada, 2).
+rotas_com_menor_impacto_ambiental(q12_5, d12_5, eletrico, Rotas1, Impacto1).
+rotas_com_menor_impacto_ambiental(q12_5, d12_5, fossil, Rotas2, Impacto2).
+
+% Resultado esperado:
+% true.
+% Rotas1 = [[q12_5, mid1, d12_5]]
+% Impacto1 = 5.0
+% Rotas2 = [[q12_5, mid1, d12_5]]
+% Impacto2 = 25.0
+
+
+% ---------------------------- Caso 6: Nenhum caminho possível ----------------------------
+reset_bd.
+adicionar_impacto.
+adicionar_quinta(q12_6, 'Quinta Isolada', centro).
+adicionar_distribuidor(d12_6, 'Distribuidor Inacessível', centro).
+rotas_com_menor_impacto_ambiental(q12_6, d12_6, eletrico, Rotas, Impacto).
+
+% Resultado esperado:
+% false.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% RF13 - Testes %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% ---------------------------- Caso 1: Só existe caminho direto ----------------------------
+reset_bd.
+adicionar_impacto.
+adicionar_quinta(q13_1, 'Quinta Solo', centro).
+adicionar_distribuidor(d13_1, 'Distribuidor Único', centro).
+adicionar_ligacao(q13_1, d13_1, 10, 15, estrada, 4).
+rota_mais_sustentavel_com_ou_sem_distribuidor_intermedio(q13_1, d13_1, eletrico, MelhorRota, Impacto).
+
+% Resultado esperado:
+% true.
+% MelhorRota = [q13_1, d13_1]
+% Impacto = 5.0
+
+
+% ---------------------------- Caso 2: Caminho com distribuidor intermediário é melhor ----------------------------
+reset_bd.
+adicionar_impacto.
+adicionar_quinta(q13_2, 'Quinta Eco', centro).
+adicionar_distribuidor(d13_2f, 'Distribuidor Final', centro).
+adicionar_distribuidor(d13_2m, 'Distribuidor Intermedio', centro).
+adicionar_ligacao(q13_2, d13_2f, 10, 15, estrada, 4).
+adicionar_ligacao(q13_2, d13_2m, 2, 5, estrada, 1).
+adicionar_ligacao(d13_2m, d13_2f, 2, 5, estrada, 1).
+rota_mais_sustentavel_com_ou_sem_distribuidor_intermedio(q13_2, d13_2f, eletrico, MelhorRota, Impacto).
+
+% Resultado esperado:
+% true.
+% MelhorRota = [q13_2, d13_2m, d13_2f]
+% Impacto = 2.0
+
+
+% ---------------------------- Caso 3: Caminho direto é melhor ----------------------------
+reset_bd.
+adicionar_impacto.
+adicionar_quinta(q13_3, 'Quinta Direta', centro).
+adicionar_distribuidor(d13_3f, 'Distribuidor Final', centro).
+adicionar_distribuidor(d13_3m, 'Distribuidor Intermedio', centro).
+adicionar_ligacao(q13_3, d13_3m, 5, 5, estrada, 1).
+adicionar_ligacao(d13_3m, d13_3f, 5, 5, estrada, 1).
+adicionar_ligacao(q13_3, d13_3f, 4, 5, estrada, 1).
+rota_mais_sustentavel_com_ou_sem_distribuidor_intermedio(q13_3, d13_3f, eletrico, MelhorRota, Impacto).
+
+% Resultado esperado:
+% true.
+% MelhorRota = [q13_3, d13_3f]
+% Impacto = 2.0
+
+
+% ---------------------------- Caso 4: Duas rotas com mesmo impacto ----------------------------
+reset_bd.
+adicionar_impacto.
+adicionar_quinta(q13_4, 'Quinta Empate', centro).
+adicionar_distribuidor(d13_4f, 'Distribuidor Final', centro).
+adicionar_distribuidor(d13_4m1, 'Distribuidor Meio 1', centro).
+adicionar_distribuidor(d13_4m2, 'Distribuidor Meio 2', centro).
+adicionar_ligacao(q13_4, d13_4m1, 2, 5, estrada, 1).
+adicionar_ligacao(d13_4m1, d13_4f, 2, 5, estrada, 1).
+adicionar_ligacao(q13_4, d13_4m2, 2, 5, estrada, 1).
+adicionar_ligacao(d13_4m2, d13_4f, 2, 5, estrada, 1).
+rota_mais_sustentavel_com_ou_sem_distribuidor_intermedio(q13_4, d13_4f, eletrico, MelhorRota, Impacto).
+
+% Resultado esperado:
+% true.
+% MelhorRota = [q13_4, d13_4m1, d13_4f] ; MelhorRota = [q13_4, d13_4m2, d13_4f]
+% Impacto = 2.0
+
+
+% ---------------------------- Caso 5: Não existe caminho possível ----------------------------
+reset_bd.
+adicionar_impacto.
+adicionar_quinta(q13_5, 'Quinta Isolada', centro).
+adicionar_distribuidor(d13_5, 'Distribuidor Desligado', norte).
+adicionar_distribuidor(d13_5m, 'Distribuidor Meio', norte).
+% Nenhuma ligação adicionada
+
+rota_mais_sustentavel_com_ou_sem_distribuidor_intermedio(q13_5, d13_5, eletrico, MelhorRota, Impacto).
+
+% Resultado esperado:
+% false.
+% Nenhuma rota possível entre a quinta e o distribuidor
+
+
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% RF14 - Testes %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% ---------------------------- Caso 1: Apenas uma transportadora cobre a rota ----------------------------
+reset_bd.
+adicionar_impacto.
+adicionar_quinta(q14_1, 'Quinta Teste', centro).
+adicionar_distribuidor(d14_1, 'Distribuidor Teste', centro).
+adicionar_ligacao(q14_1, d14_1, 10, 20, estrada, 5).
+adicionar_transportadora(t14_1, 'EcoTransporte', 1000, eletrico, [centro]).
+listar_transportadora_ideal([q14_1, d14_1], [0.4, 0.3, 0.2, 0.1], Ideal).
+
+% Resultado esperado:
+% true.
+% Ideal = (t14_1, 'EcoTransporte', ValorCalculado).
+% ValorCalculado deve ser o valor do custo total ponderado.
+
+
+% ---------------------------- Caso 2: Múltiplas transportadoras, escolher pela melhor ponderação ----------------------------
+reset_bd.
+adicionar_impacto.
+adicionar_quinta(q14_2, 'Quinta Multi', centro).
+adicionar_distribuidor(d14_2, 'Distribuidor Multi', centro).
+adicionar_ligacao(q14_2, d14_2, 10, 20, estrada, 10).
+adicionar_transportadora(t14_2a, 'Barata', 800, fossil, [centro]).
+adicionar_transportadora(t14_2b, 'Rapida', 600, hibrido, [centro]).
+adicionar_transportadora(t14_2c, 'Ecológica', 500, eletrico, [centro]).
+listar_transportadora_ideal([q14_2, d14_2], [0.4, 0.3, 0.2, 0.1], Ideal).
+
+% Resultado esperado:
+% true.
+% Ideal = (ID da transportadora com melhor valor calculado)
+% Nota: depende dos pesos e características de cada transportadora
+
+
+% ---------------------------- Caso 3: Nenhuma transportadora cobre a rota ----------------------------
+reset_bd.
+adicionar_impacto.
+adicionar_quinta(q14_3, 'Quinta Perdida', norte).
+adicionar_distribuidor(d14_3, 'Distribuidor Inacessível', sul).
+adicionar_ligacao(q14_3, d14_3, 20, 40, estrada, 15).
+adicionar_transportadora(t14_3, 'LocalTrans', 500, hibrido, [norte]).
+listar_transportadora_ideal([q14_3, d14_3], [0.4, 0.3, 0.2, 0.1], Ideal).
+
+% Resultado esperado:
+% false.
+% Nenhuma transportadora cobre ambas as zonas.
+
+
+% ---------------------------- Caso 4: Duas transportadoras com empate na ponderação ----------------------------
+reset_bd.
+adicionar_impacto.
+adicionar_quinta(q14_4, 'Quinta Empate', centro).
+adicionar_distribuidor(d14_4, 'Distribuidor Empate', centro).
+adicionar_ligacao(q14_4, d14_4, 10, 20, estrada, 5).
+adicionar_transportadora(t14_4a, 'Empate1', 1000, eletrico, [centro]).
+adicionar_transportadora(t14_4b, 'Empate2', 1000, eletrico, [centro]).
+listar_transportadora_ideal([q14_4, d14_4], [0.4, 0.3, 0.2, 0.1], Ideal).
+
+% Resultado esperado:
+% true.
+% Ideal = (t14_4a, 'Empate1', X) ; Ideal = (t14_4b, 'Empate2', X)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% RF15 - Testes %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% ---------------------------- Caso 1: Duas quintas próximas e soma < capacidade ----------------------------
+reset_bd.
+adicionar_quinta(q15_1a, 'Quinta A', centro).
+adicionar_quinta(q15_1b, 'Quinta B', centro).
+adicionar_consumo(q15_1a, milho, 3000).
+adicionar_consumo(q15_1b, milho, 2000).
+adicionar_ligacao(q15_1a, q15_1b, 5, 10, estrada, 1).
+sugestao_agrupamento_entregas(milho, 8000, Grupos1).
+
+% Esperado: Grupos1 = [[q15_1a, q15_1b]]
+
+
+% ---------------------------- Caso 2: Duas quintas distantes (>10km) ----------------------------
+reset_bd.
+adicionar_quinta(q15_2a, 'Quinta A', centro).
+adicionar_quinta(q15_2b, 'Quinta B', centro).
+adicionar_consumo(q15_2a, milho, 3000).
+adicionar_consumo(q15_2b, milho, 2000).
+adicionar_ligacao(q15_2a, q15_2b, 15, 10, estrada, 1).
+sugestao_agrupamento_entregas(milho, 8000, Grupos2).
+
+% Esperado: Grupos2 = [[q15_2a], [q15_2b]]
+
+
+% ---------------------------- Caso 3: Soma de consumos ultrapassa capacidade ----------------------------
+reset_bd.
+adicionar_quinta(q15_3a, 'Quinta A', centro).
+adicionar_quinta(q15_3b, 'Quinta B', centro).
+adicionar_consumo(q15_3a, milho, 6000).
+adicionar_consumo(q15_3b, milho, 5000).
+adicionar_ligacao(q15_3a, q15_3b, 3, 6, estrada, 2).
+sugestao_agrupamento_entregas(milho, 10000, Grupos3).
+
+% Esperado: Grupos3 = [[q15_3a], [q15_3b]]
+
+
+% ---------------------------- Caso 4: Três quintas agrupadas em dois grupos ----------------------------
+reset_bd.
+adicionar_quinta(q15_4a, 'Quinta A', centro).
+adicionar_quinta(q15_4b, 'Quinta B', centro).
+adicionar_quinta(q15_4c, 'Quinta C', centro).
+adicionar_consumo(q15_4a, milho, 3000).
+adicionar_consumo(q15_4b, milho, 2500).
+adicionar_consumo(q15_4c, milho, 4000).
+adicionar_ligacao(q15_4a, q15_4b, 5, 5, estrada, 1).
+adicionar_ligacao(q15_4b, q15_4c, 5, 5, estrada, 1).
+sugestao_agrupamento_entregas(milho, 7000, Grupos4).
+
+% Esperado: [[q15_4a, q15_4b], [q15_4c]] ou outra combinação válida
+
+
+% ---------------------------- Caso 5: Quinta sem consumo não aparece ----------------------------
+reset_bd.
+adicionar_quinta(q15_5a, 'Quinta A', centro).
+adicionar_quinta(q15_5b, 'Quinta B', centro).
+adicionar_consumo(q15_5a, milho, 4000).
+% q15_5b não tem consumo
+adicionar_ligacao(q15_5a, q15_5b, 3, 4, estrada, 1).
+sugestao_agrupamento_entregas(milho, 8000, Grupos5).
+
+% Esperado: Grupos5 = [[q15_5a]]
+
+
+% ---------------------------- Caso 6: Cultura diferente não aparece ----------------------------
+reset_bd.
+adicionar_quinta(q15_6a, 'Quinta A', centro).
+adicionar_quinta(q15_6b, 'Quinta B', centro).
+adicionar_consumo(q15_6a, tomate, 3000).
+adicionar_consumo(q15_6b, milho, 2000).
+adicionar_ligacao(q15_6a, q15_6b, 4, 5, estrada, 1).
+sugestao_agrupamento_entregas(milho, 8000, Grupos6).
+
+% Esperado: Grupos6 = [[q15_6b]]
+
+
+% ---------------------------- Caso 7: Quintas sem ligação (sem caminho possível) ----------------------------
+reset_bd.
+adicionar_quinta(q15_7a, 'Quinta A', centro).
+adicionar_quinta(q15_7b, 'Quinta B', centro).
+adicionar_consumo(q15_7a, milho, 2500).
+adicionar_consumo(q15_7b, milho, 2500).
+% Nota: sem ligação entre quintas
+sugestao_agrupamento_entregas(milho, 8000, Grupos7).
+
+% Esperado: Grupos7 = [[q15_7a], [q15_7b]]
+
+
+% ---------------------------- Caso 8: Capacidade extremamente baixa ----------------------------
+reset_bd.
+adicionar_quinta(q15_8a, 'Quinta A', centro).
+adicionar_quinta(q15_8b, 'Quinta B', centro).
+adicionar_consumo(q15_8a, milho, 1000).
+adicionar_consumo(q15_8b, milho, 1500).
+adicionar_ligacao(q15_8a, q15_8b, 3, 5, estrada, 1).
+sugestao_agrupamento_entregas(milho, 1, Grupos8).
+
+% Esperado: Grupos8 = [[q15_8a], [q15_8b]]
+
+
+% ---------------------------- Caso 9: Capacidade muito alta (todas agrupadas) ----------------------------
+reset_bd.
+adicionar_quinta(q15_9a, 'Quinta A', centro).
+adicionar_quinta(q15_9b, 'Quinta B', centro).
+adicionar_quinta(q15_9c, 'Quinta C', centro).
+adicionar_consumo(q15_9a, milho, 2000).
+adicionar_consumo(q15_9b, milho, 3000).
+adicionar_consumo(q15_9c, milho, 4000).
+adicionar_ligacao(q15_9a, q15_9b, 3, 4, estrada, 1).
+adicionar_ligacao(q15_9b, q15_9c, 5, 6, estrada, 1).
+adicionar_ligacao(q15_9a, q15_9c, 6, 7, estrada, 1).
+sugestao_agrupamento_entregas(milho, 20000, Grupos9).
+
+% Esperado: Grupos9 = [[q15_9a, q15_9b, q15_9c]]
+
+
+% ---------------------------- Caso 10: Agrupamento complexo com múltiplos grupos ----------------------------
+reset_bd.
+adicionar_quinta(q15_10a, 'Quinta A', centro).
+adicionar_quinta(q15_10b, 'Quinta B', centro).
+adicionar_quinta(q15_10c, 'Quinta C', centro).
+adicionar_quinta(q15_10d, 'Quinta D', centro).
+adicionar_consumo(q15_10a, milho, 2000).
+adicionar_consumo(q15_10b, milho, 3000).
+adicionar_consumo(q15_10c, milho, 3500).
+adicionar_consumo(q15_10d, milho, 2500).
+adicionar_ligacao(q15_10a, q15_10b, 4, 5, estrada, 1).
+adicionar_ligacao(q15_10b, q15_10c, 4, 5, estrada, 1).
+adicionar_ligacao(q15_10c, q15_10d, 4, 5, estrada, 1).
+sugestao_agrupamento_entregas(milho, 6000, Grupos10).
+
+% Esperado: [[q15_10a, q15_10b], [q15_10c], [q15_10d]] ou similar
