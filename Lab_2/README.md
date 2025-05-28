@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 ## MDE_LAB2
 
 | RF  | Description                                                                                                          | Status   |
