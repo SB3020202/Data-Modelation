@@ -1,10 +1,8 @@
-=======
+
 ### Como usar o Git passo a passo
-=======
-# MDE 2024-2025
+MDE 2024-2025
 
 #### 1. Clonar o repositório (apenas na primeira vez)
->>>>>>> 071eac433f6fbc9e671c8950ebe16bfc53200f5e
 
 ```bash
 git clone https://github.com/SB3020202/Data-Modelation.git
