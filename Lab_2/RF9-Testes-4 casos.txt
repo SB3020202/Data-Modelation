@@ -1,0 +1,45 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% RF9 - Testes %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% ---------------------------- Caso 1: Uma quinta com vários consumos ----------------------------
+reset_bd.
+adicionar_quinta(q9_1, 'Quinta Verde', centro).
+adicionar_consumo(q9_1, milho, 500).
+adicionar_consumo(q9_1, tomate, 300).
+consumos_por_quinta(q9_1, Lista).
+
+% Resultado esperado:
+% true.
+% Lista = [(milho, 500), (tomate, 300)].
+
+
+% ---------------------------- Caso 2: Cultura presente em várias quintas ----------------------------
+reset_bd.
+adicionar_quinta(q9_2a, 'Quinta A', centro).
+adicionar_quinta(q9_2b, 'Quinta B', centro).
+adicionar_consumo(q9_2a, milho, 500).
+adicionar_consumo(q9_2b, milho, 700).
+consumos_por_cultura(milho, Lista).
+
+% Resultado esperado:
+% true.
+% Lista = [(q9_2a, 500), (q9_2b, 700)].
+
+
+% ---------------------------- Caso 3: Quinta sem consumos registados ----------------------------
+reset_bd.
+adicionar_quinta(q9_3, 'Quinta Vazia', centro).
+consumos_por_quinta(q9_3, Lista).
+
+% Resultado esperado:
+% true.
+% Lista = [].
+
+
+% ---------------------------- Caso 4: Cultura não existente ----------------------------
+reset_bd.
+adicionar_quinta(q9_4, 'Quinta Fantasma', centro).
+consumos_por_cultura(uvas, Lista).
+
+% Resultado esperado:
+% true.
+% Lista = [].

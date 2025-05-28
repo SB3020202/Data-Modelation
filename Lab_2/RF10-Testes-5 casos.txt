@@ -1,0 +1,65 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% RF10 - Testes %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% ---------------------------- Caso 1: Sensor com leitura acima do limite (temperatura) ----------------------------
+reset_bd.
+adicionar_quinta(q10_1, 'Quinta Alta', centro).
+adicionar_sensor(s10_1, temperatura, q10_1).
+adicionar_leitura(s10_1, '2024-05-01T10:00', temperatura, 40).
+recolha_sensores_fora_do_limite(Lista).
+
+% Resultado esperado:
+% true.
+% Lista = [(s10_1, '2024-05-01T10:00', temperatura, 40)].
+
+
+% ---------------------------- Caso 2: Sensor com leitura dentro do limite (temperatura) ----------------------------
+reset_bd.
+adicionar_quinta(q10_2, 'Quinta Estável', centro).
+adicionar_sensor(s10_2, temperatura, q10_2).
+adicionar_leitura(s10_2, '2024-05-01T10:00', temperatura, 30).
+recolha_sensores_fora_do_limite(Lista).
+
+% Resultado esperado:
+% true.
+% Lista = [].
+
+
+% ---------------------------- Caso 3: Sensor com leitura abaixo do limite (humidade) ----------------------------
+reset_bd.
+adicionar_quinta(q10_3, 'Quinta Seca', centro).
+adicionar_sensor(s10_3, humidade, q10_3).
+adicionar_leitura(s10_3, '2024-05-01T10:00', humidade, 25).
+recolha_sensores_fora_do_limite(Lista).
+
+% Resultado esperado:
+% true.
+% Lista = [(s10_3, '2024-05-01T10:00', humidade, 25)].
+
+
+% ---------------------------- Caso 4: Leitura mais recente está dentro do limite ----------------------------
+reset_bd.
+adicionar_quinta(q10_4, 'Quinta Histórica', centro).
+adicionar_sensor(s10_4, temperatura, q10_4).
+adicionar_leitura(s10_4, '2024-05-01T08:00', temperatura, 40).
+adicionar_leitura(s10_4, '2024-05-01T10:00', temperatura, 34).
+recolha_sensores_fora_do_limite(Lista).
+
+% Resultado esperado:
+% true.
+% Lista = [].
+
+
+% ---------------------------- Caso 5: Vários sensores, apenas alguns fora do limite ----------------------------
+reset_bd.
+adicionar_quinta(q10_5, 'Quinta Mista', centro).
+adicionar_sensor(s10_5a, temperatura, q10_5).
+adicionar_sensor(s10_5b, humidade, q10_5).
+adicionar_sensor(s10_5c, humidade, q10_5).
+adicionar_leitura(s10_5a, '2024-05-01T09:00', temperatura, 36).
+adicionar_leitura(s10_5b, '2024-05-01T09:00', humidade, 31).
+adicionar_leitura(s10_5c, '2024-05-01T09:00', humidade, 20).
+recolha_sensores_fora_do_limite(Lista).
+
+% Resultado esperado:
+% true.
+% Lista = [(s10_5a, '2024-05-01T09:00', temperatura, 36), (s10_5c, '2024-05-01T09:00', humidade, 20)].

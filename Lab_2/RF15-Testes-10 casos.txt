@@ -1,0 +1,133 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% RF15 - Testes %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% ---------------------------- Caso 1: Duas quintas próximas e soma < capacidade ----------------------------
+reset_bd.
+adicionar_quinta(q15_1a, 'Quinta A', centro).
+adicionar_quinta(q15_1b, 'Quinta B', centro).
+adicionar_consumo(q15_1a, milho, 3000).
+adicionar_consumo(q15_1b, milho, 2000).
+adicionar_ligacao(q15_1a, q15_1b, 5, 10, estrada, 1).
+sugestao_agrupamento_entregas(milho, 8000, Grupos1).
+
+% Esperado: Grupos1 = [[q15_1a, q15_1b]]
+
+
+% ---------------------------- Caso 2: Duas quintas distantes (>10km) ----------------------------
+reset_bd.
+adicionar_quinta(q15_2a, 'Quinta A', centro).
+adicionar_quinta(q15_2b, 'Quinta B', centro).
+adicionar_consumo(q15_2a, milho, 3000).
+adicionar_consumo(q15_2b, milho, 2000).
+adicionar_ligacao(q15_2a, q15_2b, 15, 10, estrada, 1).
+sugestao_agrupamento_entregas(milho, 8000, Grupos2).
+
+% Esperado: Grupos2 = [[q15_2a], [q15_2b]]
+
+
+% ---------------------------- Caso 3: Soma de consumos ultrapassa capacidade ----------------------------
+reset_bd.
+adicionar_quinta(q15_3a, 'Quinta A', centro).
+adicionar_quinta(q15_3b, 'Quinta B', centro).
+adicionar_consumo(q15_3a, milho, 6000).
+adicionar_consumo(q15_3b, milho, 5000).
+adicionar_ligacao(q15_3a, q15_3b, 3, 6, estrada, 2).
+sugestao_agrupamento_entregas(milho, 10000, Grupos3).
+
+% Esperado: Grupos3 = [[q15_3a], [q15_3b]]
+
+
+% ---------------------------- Caso 4: Três quintas agrupadas em dois grupos ----------------------------
+reset_bd.
+adicionar_quinta(q15_4a, 'Quinta A', centro).
+adicionar_quinta(q15_4b, 'Quinta B', centro).
+adicionar_quinta(q15_4c, 'Quinta C', centro).
+adicionar_consumo(q15_4a, milho, 3000).
+adicionar_consumo(q15_4b, milho, 2500).
+adicionar_consumo(q15_4c, milho, 4000).
+adicionar_ligacao(q15_4a, q15_4b, 5, 5, estrada, 1).
+adicionar_ligacao(q15_4b, q15_4c, 5, 5, estrada, 1).
+sugestao_agrupamento_entregas(milho, 7000, Grupos4).
+
+% Esperado: [[q15_4a, q15_4b], [q15_4c]] ou outra combinação válida
+
+
+% ---------------------------- Caso 5: Quinta sem consumo não aparece ----------------------------
+reset_bd.
+adicionar_quinta(q15_5a, 'Quinta A', centro).
+adicionar_quinta(q15_5b, 'Quinta B', centro).
+adicionar_consumo(q15_5a, milho, 4000).
+% q15_5b não tem consumo
+adicionar_ligacao(q15_5a, q15_5b, 3, 4, estrada, 1).
+sugestao_agrupamento_entregas(milho, 8000, Grupos5).
+
+% Esperado: Grupos5 = [[q15_5a]]
+
+
+% ---------------------------- Caso 6: Cultura diferente não aparece ----------------------------
+reset_bd.
+adicionar_quinta(q15_6a, 'Quinta A', centro).
+adicionar_quinta(q15_6b, 'Quinta B', centro).
+adicionar_consumo(q15_6a, tomate, 3000).
+adicionar_consumo(q15_6b, milho, 2000).
+adicionar_ligacao(q15_6a, q15_6b, 4, 5, estrada, 1).
+sugestao_agrupamento_entregas(milho, 8000, Grupos6).
+
+% Esperado: Grupos6 = [[q15_6b]]
+
+
+% ---------------------------- Caso 7: Quintas sem ligação (sem caminho possível) ----------------------------
+reset_bd.
+adicionar_quinta(q15_7a, 'Quinta A', centro).
+adicionar_quinta(q15_7b, 'Quinta B', centro).
+adicionar_consumo(q15_7a, milho, 2500).
+adicionar_consumo(q15_7b, milho, 2500).
+% Nota: sem ligação entre quintas
+sugestao_agrupamento_entregas(milho, 8000, Grupos7).
+
+% Esperado: Grupos7 = [[q15_7a], [q15_7b]]
+
+
+% ---------------------------- Caso 8: Capacidade extremamente baixa ----------------------------
+reset_bd.
+adicionar_quinta(q15_8a, 'Quinta A', centro).
+adicionar_quinta(q15_8b, 'Quinta B', centro).
+adicionar_consumo(q15_8a, milho, 1000).
+adicionar_consumo(q15_8b, milho, 1500).
+adicionar_ligacao(q15_8a, q15_8b, 3, 5, estrada, 1).
+sugestao_agrupamento_entregas(milho, 1, Grupos8).
+
+% Esperado: Grupos8 = [[q15_8a], [q15_8b]]
+
+
+% ---------------------------- Caso 9: Capacidade muito alta (todas agrupadas) ----------------------------
+reset_bd.
+adicionar_quinta(q15_9a, 'Quinta A', centro).
+adicionar_quinta(q15_9b, 'Quinta B', centro).
+adicionar_quinta(q15_9c, 'Quinta C', centro).
+adicionar_consumo(q15_9a, milho, 2000).
+adicionar_consumo(q15_9b, milho, 3000).
+adicionar_consumo(q15_9c, milho, 4000).
+adicionar_ligacao(q15_9a, q15_9b, 3, 4, estrada, 1).
+adicionar_ligacao(q15_9b, q15_9c, 5, 6, estrada, 1).
+adicionar_ligacao(q15_9a, q15_9c, 6, 7, estrada, 1).
+sugestao_agrupamento_entregas(milho, 20000, Grupos9).
+
+% Esperado: Grupos9 = [[q15_9a, q15_9b, q15_9c]]
+
+
+% ---------------------------- Caso 10: Agrupamento complexo com múltiplos grupos ----------------------------
+reset_bd.
+adicionar_quinta(q15_10a, 'Quinta A', centro).
+adicionar_quinta(q15_10b, 'Quinta B', centro).
+adicionar_quinta(q15_10c, 'Quinta C', centro).
+adicionar_quinta(q15_10d, 'Quinta D', centro).
+adicionar_consumo(q15_10a, milho, 2000).
+adicionar_consumo(q15_10b, milho, 3000).
+adicionar_consumo(q15_10c, milho, 3500).
+adicionar_consumo(q15_10d, milho, 2500).
+adicionar_ligacao(q15_10a, q15_10b, 4, 5, estrada, 1).
+adicionar_ligacao(q15_10b, q15_10c, 4, 5, estrada, 1).
+adicionar_ligacao(q15_10c, q15_10d, 4, 5, estrada, 1).
+sugestao_agrupamento_entregas(milho, 6000, Grupos10).
+
+% Esperado: [[q15_10a, q15_10b], [q15_10c], [q15_10d]] ou similar
