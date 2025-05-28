@@ -3,11 +3,11 @@
 MDE 2024-2025
 
 
-###Lab 1: usa SQL, Python, Java, CSS, HTML
+Lab 1: usa SQL, Python, Java, CSS, HTML
 
-###Lab 2: usa Prolog, Python, Java, CSS, HTML
+Lab 2: usa Prolog, Python, Java, CSS, HTML
 
-###Lab 3: usa GOLOG, Python, Java, CSS, HTML
+Lab 3: usa GOLOG, Python, Java, CSS, HTML
 
 ####1. Clonar o repositório (apenas na primeira vez)
 
