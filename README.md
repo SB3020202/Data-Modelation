@@ -45,4 +45,3 @@ git pull origin master
 - Guilherme Silva → [@guicdas](https://www.github.com/guicdas)
 - Sidi Brahim → [@SB3020202](https://github.com/SB3020202)
 - Francisco Malho → [@](https://github.com/)
->>>>>>> 4103bd14924892dfebae1a1f0c0bbec314f9bdc5
