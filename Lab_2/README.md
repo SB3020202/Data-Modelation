@@ -18,4 +18,4 @@
 | 14  | Listar a transportadora ideal para uma rota com base em múltiplos critérios.                                         | ✅       |
 | 15  | Definir e implementar uma funcionalidade adicional proposta pelos alunos.                                            | ✅       |
 | 16  | Criação do servidor em SWI-Prolog disponibilizando as funcionalidades anteriores e criação de uma aplicação em Java. | ✅       |
-=======
+
