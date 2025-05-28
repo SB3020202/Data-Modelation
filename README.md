@@ -9,7 +9,7 @@ MDE 2024-2025
 
 ▪️ Lab 3: usa GOLOG, Python, Java, CSS, HTML
 
-####1. Clonar o repositório (apenas na primeira vez)
+1. Clonar o repositório (apenas na primeira vez)
 
 ```bash
 git clone https://github.com/SB3020202/Data-Modelation.git
