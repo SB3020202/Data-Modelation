@@ -17,11 +17,11 @@
 %   - Cria uma frame no sistema com os atributos fornecidos.
 %
 % Funcionamento:
-%   Este predicado cria uma nova estufa no sistema Golog.
+%   Cria uma nova estufa no sistema Golog.
 %   A estufa é representada por uma frame com os seguintes atributos:
 %   - nome, localizacao, tipos_fruta
 %   - parâmetros térmicos: li, ls, lai, las
-%   Usa os predicados `new_frame/1` e `new_slot/3` da engine Golog.
+%  
 %
 % Como usar:
 %   ?- criar_estufa(estufa1, 'Estufa Norte', 'Lisboa', [morango, tomate], 15, 30, 10, 40).
