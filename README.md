@@ -3,7 +3,7 @@
 MDE 2024-2025
 
 
-▪️ Lab 1: usa SQL,    Python, Java, CSS, HTML
+▪️ Lab 1: usa SQL,ㅤㅤPython, Java, CSS, HTML
 
 ▪️ Lab 2: usa Prolog, Python, Java, CSS, HTML
 
