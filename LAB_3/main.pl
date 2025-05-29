@@ -1,23 +1,28 @@
 
 
 % -----------------------------------RF1 ---------------------------------------------------------
-% ===================================================================================
+% =============================================================================
 % criar_estufa/9
 % =============================================================================
-% Input: - Id : identificador único da estufa (atom) - Nome : nome da
-% estufa (string) - Local : localização da estufa (string) - Frutas:
-% lista de frutas cultivadas (list of atoms) - Li : limite inferior de
-% conforto térmico (number) - Ls : limite superior de conforto térmico
-% (number) - Lai : limite absoluto inferior (abaixo de freezing)
-% (number) - Las : limite absoluto superior (acima de burning) (number)
+% Input:
+%   - Id: identificador único da estufa (atom)
+%   - Nome: nome da estufa (string)
+%   - Local: localização geográfica da estufa (string)
+%   - Frutas: lista de frutas cultivadas (list of atoms)
+%   - Li: limite inferior de conforto térmico (number)
+%   - Ls: limite superior de conforto térmico (number)
+%   - Lai: limite absoluto inferior (abaixo do qual é "freezing") (number)
+%   - Las: limite absoluto superior (acima do qual é "burning") (number)
 %
 % Output:
-%   - Cria uma frame com os atributos especificados.
+%   - Cria uma frame no sistema com os atributos fornecidos.
 %
 % Funcionamento:
-%   Cria uma nova estufa representada por uma frame com nome e localização,
-%   associando-lhe os tipos de fruta cultivados e os parâmetros ambientais
-%   para controlo de climatização.
+%   Este predicado cria uma nova estufa no sistema Golog.
+%   A estufa é representada por uma frame com os seguintes atributos:
+%   - nome, localizacao, tipos_fruta
+%   - parâmetros térmicos: li, ls, lai, las
+%   Usa os predicados `new_frame/1` e `new_slot/3` da engine Golog.
 %
 % Como usar:
 %   ?- criar_estufa(estufa1, 'Estufa Norte', 'Lisboa', [morango, tomate], 15, 30, 10, 40).
