@@ -4,14 +4,14 @@
 % criar_estufa/9
 % =============================================================================
 % Input:
-%   - Id: identificador único da estufa (atom)
-%   - Nome: nome da estufa (string)
-%   - Local: localização geográfica da estufa (string)
-%   - Frutas: lista de frutas cultivadas (list of atoms)
-%   - Li: limite inferior de conforto térmico (number)
-%   - Ls: limite superior de conforto térmico (number)
-%   - Lai: limite absoluto inferior (abaixo do qual é "freezing") (number)
-%   - Las: limite absoluto superior (acima do qual é "burning") (number)
+%   - Id     : identificador único da estufa (atom)
+%   - Nome   : nome da estufa (string)
+%   - Local  : localização geográfica da estufa (string)
+%   - Frutas : lista de frutas cultivadas (list of atoms)
+%   - Li     : limite inferior de conforto térmico (number)
+%   - Ls     : limite superior de conforto térmico (number)
+%   - Lai    : limite absoluto inferior (abaixo do qual é "freezing") (number)
+%   - Las    : limite absoluto superior (acima do qual é "burning") (number)
 %
 % Output:
 %   - Cria uma frame no sistema com os atributos fornecidos.
