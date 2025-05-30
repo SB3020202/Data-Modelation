@@ -125,9 +125,132 @@ apagar_estufa(Id) :-
 
 
 
+
+
+
+
+
+
 % -----------------------------------RF2 ---------------------------------------------------------
 
+% =============================================================================
+% criar_fruta/8
+% =============================================================================
+% Input:
+%   - Id        : identificador único do lote de fruta                   (atom)
+%   - Nome      : nome da fruta (ex: 'Morango')                          (string)
+%   - Ref       : referência/código interno da fruta                     (atom)
+%   - Semeio    : data de semeio                                         (string)
+%   - Colheita  : data de colheita                                       (string)
+%   - Validade  : data de validade                                       (string)
+%   - Preco     : preço por unidade                                      (number)
+%   - EstufaId  : identificador da estufa a que este lote pertence       (atom)
+%
+% Output:
+%   - Cria uma frame representando um lote de fruta com stock inicial 0.
+%
+% Funcionamento:
+%   Cria um registo de lote de fruta (não a fruta individual), associando-o
+%   a uma estufa concreta e inicializando o stock (quantidade) a 0 unidades.
+%
+% Como usar:
+%   ?- criar_fruta(fruta1, 'Morango', ref001, '2025-03-01', '2025-04-10',
+%                  '2025-04-20', 1.20, estufa1).
+% =============================================================================
 
+criar_fruta(Id, Nome, Ref, Semeio, Colheita, Validade, Preco, EstufaId) :-
+    new_frame(Id),
+    new_slot(Id, nome, Nome),
+    new_slot(Id, referencia, Ref),
+    new_slot(Id, data_semeio, Semeio),
+    new_slot(Id, data_colheita, Colheita),
+    new_slot(Id, validade, Validade),
+    new_slot(Id, preco, Preco),
+    new_slot(Id, quantidade, 0),
+    new_slot(Id, estufaId, EstufaId).
+
+
+
+
+
+
+% =============================================================================
+% mostrar_fruta/1
+% =============================================================================
+% Input:
+%   - Id : identificador do lote de fruta a visualizar                    (atom)
+%
+% Output:
+%   - Mostra no terminal todos os slots e valores do lote de fruta.
+%
+% Funcionamento:
+%   Usa o predicado `show_frame/1` da engine Golog para apresentar
+%   todos os atributos associados a esse lote de fruta, incluindo:
+%   nome, referência, datas, preço, quantidade e estufa associada.
+%
+% Como usar:
+%   ?- mostrar_fruta(fruta1).
+% =============================================================================
+mostrar_fruta(Id) :-
+    show_frame(Id).
+
+
+
+
+% =============================================================================
+% alterar_fruta/8
+% =============================================================================
+% Input:
+%   - Id        : identificador do lote de fruta                         (atom)
+%   - Nome      : novo nome da fruta                                     (string)
+%   - Ref       : nova referência/código interno                         (atom)
+%   - Semeio    : nova data de semeio                                    (string)
+%   - Colheita  : nova data de colheita                                  (string)
+%   - Validade  : nova data de validade                                  (string)
+%   - Preco     : novo preço por unidade                                 (number)
+%   - EstufaId  : nova estufa associada                                  (atom)
+%
+% Output:
+%   - Atualiza todos os atributos do lote de fruta.
+%
+% Funcionamento:
+%   Usa `new_value/3` da engine Golog para atualizar todos os campos de
+%   um lote de fruta existente no sistema, mantendo o mesmo Id.
+%
+% Como usar:
+%   ?- alterar_fruta(fruta1, 'Morango', ref002, '2025-03-10',
+%                    '2025-04-15', '2025-04-25', 1.40, estufa2).
+% =============================================================================
+alterar_fruta(Id, Nome, Ref, Semeio, Colheita, Validade, Preco, EstufaId) :-
+    new_value(Id, nome, Nome),
+    new_value(Id, referencia, Ref),
+    new_value(Id, data_semeio, Semeio),
+    new_value(Id, data_colheita, Colheita),
+    new_value(Id, validade, Validade),
+    new_value(Id, preco, Preco),
+    new_value(Id, estufaId, EstufaId).
+
+
+
+% =============================================================================
+% apagar_fruta/1
+% =============================================================================
+% Input:
+%   - Id : identificador do lote de fruta a remover                      (atom)
+%
+% Output:
+%   - Elimina o lote de fruta e todos os seus atributos da base de conhecimento.
+%
+% Funcionamento:
+%   Usa o predicado `delete_frame/1` da engine Golog para remover
+%   completamente o registo de fruta com esse Id. Após a remoção, a fruta
+%   deixa de poder ser consultada ou encomendada.
+%
+% Como usar:
+%   ?- apagar_fruta(fruta1).
+% =============================================================================
+apagar_fruta(Id) :-
+    delete_frame(Id).
 
 
 
