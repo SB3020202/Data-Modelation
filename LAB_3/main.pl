@@ -1,50 +1,41 @@
 
-
-<<<<<<< HEAD
 % -----------------------------------RF1 ---------------------------------------------------------
-=======
->>>>>>> 704657eac9b1315679725ce9417bc963238e864f
+
 % =============================================================================
 % criar_estufa/9
 % =============================================================================
 % Input:
-<<<<<<< HEAD
-%   - Id: identificador �nico da estufa (atom)
+%   - Id: identificador único da estufa (atom)
 %   - Nome: nome da estufa (string)
-%   - Local: localiza��o geogr�fica da estufa (string)
+%   - Local: localização geográfica da estufa (string)
 %   - Frutas: lista de frutas cultivadas (list of atoms)
-%   - Li: limite inferior de conforto t�rmico (number)
-%   - Ls: limite superior de conforto t�rmico (number)
-%   - Lai: limite absoluto inferior (abaixo do qual � "freezing") (number)
-%   - Las: limite absoluto superior (acima do qual � "burning") (number)
-=======
-%   - Id     : identificador único da estufa                          (atom)
+%   - Li: limite inferior de conforto térmico (number)
+%   - Ls: limite superior de conforto térmico (number)
+%   - Lai: limite absoluto inferior (abaixo do qual é "freezing") (number)
+%   - Las: limite absoluto superior (acima do qual é "burning") (number)
+%   - Id     : identificador Ãºnico da estufa                          (atom)
 %   - Nome   : nome da estufa                                         (string)
-%   - Local  : localização geográfica da estufa                       (string)
+%   - Local  : localizaÃ§Ã£o geogrÃ¡fica da estufa                       (string)
 %   - Frutas : lista de frutas cultivadas                             (list of atoms)
-%   - Li     : limite inferior de conforto térmico                    (number)
-%   - Ls     : limite superior de conforto térmico                    (number)
-%   - Lai    : limite absoluto inferior (abaixo do qual é "freezing") (number)
-%   - Las    : limite absoluto superior (acima do qual é "burning")   (number)
->>>>>>> 704657eac9b1315679725ce9417bc963238e864f
+%   - Li     : limite inferior de conforto tÃ©rmico                    (number)
+%   - Ls     : limite superior de conforto tÃ©rmico                    (number)
+%   - Lai    : limite absoluto inferior (abaixo do qual Ã© "freezing") (number)
+%   - Las    : limite absoluto superior (acima do qual Ã© "burning")   (number)
 %
 % Output:
 %   - Cria uma frame no sistema com os atributos fornecidos.
 %
 % Funcionamento:
-<<<<<<< HEAD
 %   Este predicado cria uma nova estufa no sistema Golog.
-%   A estufa � representada por uma frame com os seguintes atributos:
-%   - nome, localizacao, tipos_fruta
-%   - par�metros t�rmicos: li, ls, lai, las
-%   Usa os predicados `new_frame/1` e `new_slot/3` da engine Golog.
-=======
-%   Cria uma nova estufa no sistema Golog.
 %   A estufa é representada por uma frame com os seguintes atributos:
 %   - nome, localizacao, tipos_fruta
 %   - parâmetros térmicos: li, ls, lai, las
+%   Usa os predicados `new_frame/1` e `new_slot/3` da engine Golog.
+%   Cria uma nova estufa no sistema Golog.
+%   A estufa Ã© representada por uma frame com os seguintes atributos:
+%   - nome, localizacao, tipos_fruta
+%   - parÃ¢metros tÃ©rmicos: li, ls, lai, las
 %  
->>>>>>> 704657eac9b1315679725ce9417bc963238e864f
 %
 % Como usar:
 %   ?- criar_estufa(estufa1, 'Estufa Norte', 'Lisboa', [morango, tomate], 15, 30, 10, 40).
@@ -70,12 +61,12 @@ criar_estufa(Id, Nome, Local, Frutas, Li, Ls, Lai, Las) :-
 %   - Id: identificador da estufa (atom)
 %
 % Output:
-%   - Mostra no terminal todos os slots e valores associados à estufa indicada.
+%   - Mostra no terminal todos os slots e valores associados Ã  estufa indicada.
 %
 % Funcionamento:
 %   Este predicado usa o predicado Golog `show_frame/1` para apresentar
-%   o conteúdo da frame da estufa, incluindo os seus atributos e valores
-%   (nome, localização, tipos de fruta, parâmetros ambientais, etc.).
+%   o conteÃºdo da frame da estufa, incluindo os seus atributos e valores
+%   (nome, localizaÃ§Ã£o, tipos de fruta, parÃ¢metros ambientais, etc.).
 %
 % Como usar:
 %   ?- mostrar_estufa(estufa1).
@@ -92,7 +83,7 @@ mostrar_estufa(Id) :-
 % Input:
 %   - Id: identificador da estufa             (atom)
 %   - Nome: novo nome da estufa               (string)
-%   - Local: nova localização                 (string)
+%   - Local: nova localizaÃ§Ã£o                 (string)
 %   - Frutas: nova lista de frutas cultivadas (list)
 %   - Li: novo limite inferior                (number)
 %   - Ls: novo limite superior                (number)
@@ -104,7 +95,7 @@ mostrar_estufa(Id) :-
 %
 % Funcionamento:
 %   Substitui os valores
-%   de todos os slots principais de uma estufa. Os slots têm de existir.
+%   de todos os slots principais de uma estufa. Os slots tÃªm de existir.
 %
 % Como usar:
 %   ?- alterar_estufa(estufa1, 'Estufa Sul', 'Faro', [banana, manga], 17, 28, 12, 38).
@@ -132,8 +123,8 @@ alterar_estufa(Id, Nome, Local, Frutas, Li, Ls, Lai, Las) :-
 %
 % Funcionamento:
 %   Este predicado elimina uma estufa existente do sistema, usando o predicado
-%   `delete_frame/1` da biblioteca GOLOG. Após a execução, a estufa deixa de existir
-%   e não pode mais ser consultada com `show_frame/1` ou `get_value/3`.
+%   `delete_frame/1` da biblioteca GOLOG. ApÃ³s a execuÃ§Ã£o, a estufa deixa de existir
+%   e nÃ£o pode mais ser consultada com `show_frame/1` ou `get_value/3`.
 %
 % Como usar:
 %   ?- apagar_estufa(estufa1).
@@ -159,20 +150,20 @@ apagar_estufa(Id) :-
 % criar_fruta/8
 % =============================================================================
 % Input:
-%   - Id        : identificador �nico do lote de fruta                   (atom)
+%   - Id        : identificador único do lote de fruta                   (atom)
 %   - Nome      : nome da fruta (ex: 'Morango')                          (string)
-%   - Ref       : refer�ncia/c�digo interno da fruta                     (atom)
+%   - Ref       : referência/código interno da fruta                     (atom)
 %   - Semeio    : data de semeio                                         (string)
 %   - Colheita  : data de colheita                                       (string)
 %   - Validade  : data de validade                                       (string)
-%   - Preco     : pre�o por unidade                                      (number)
+%   - Preco     : preço por unidade                                      (number)
 %   - EstufaId  : identificador da estufa a que este lote pertence       (atom)
 %
 % Output:
 %   - Cria uma frame representando um lote de fruta com stock inicial 0.
 %
 % Funcionamento:
-%   Cria um registo de lote de fruta (n�o a fruta individual), associando-o
+%   Cria um registo de lote de fruta (não a fruta individual), associando-o
 %   a uma estufa concreta e inicializando o stock (quantidade) a 0 unidades.
 %
 % Como usar:
@@ -208,7 +199,7 @@ criar_fruta(Id, Nome, Ref, Semeio, Colheita, Validade, Preco, EstufaId) :-
 % Funcionamento:
 %   Usa o predicado `show_frame/1` da engine Golog para apresentar
 %   todos os atributos associados a esse lote de fruta, incluindo:
-%   nome, refer�ncia, datas, pre�o, quantidade e estufa associada.
+%   nome, referência, datas, preço, quantidade e estufa associada.
 %
 % Como usar:
 %   ?- mostrar_fruta(fruta1).
@@ -225,11 +216,11 @@ mostrar_fruta(Id) :-
 % Input:
 %   - Id        : identificador do lote de fruta                         (atom)
 %   - Nome      : novo nome da fruta                                     (string)
-%   - Ref       : nova refer�ncia/c�digo interno                         (atom)
+%   - Ref       : nova referência/código interno                         (atom)
 %   - Semeio    : nova data de semeio                                    (string)
 %   - Colheita  : nova data de colheita                                  (string)
 %   - Validade  : nova data de validade                                  (string)
-%   - Preco     : novo pre�o por unidade                                 (number)
+%   - Preco     : novo preço por unidade                                 (number)
 %   - EstufaId  : nova estufa associada                                  (atom)
 %
 % Output:
@@ -265,7 +256,7 @@ alterar_fruta(Id, Nome, Ref, Semeio, Colheita, Validade, Preco, EstufaId) :-
 %
 % Funcionamento:
 %   Usa o predicado `delete_frame/1` da engine Golog para remover
-%   completamente o registo de fruta com esse Id. Ap�s a remo��o, a fruta
+%   completamente o registo de fruta com esse Id. Após a remoção, a fruta
 %   deixa de poder ser consultada ou encomendada.
 %
 % Como usar:
