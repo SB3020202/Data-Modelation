@@ -1,10 +1,14 @@
 
 
+<<<<<<< HEAD
 % -----------------------------------RF1 ---------------------------------------------------------
+=======
+>>>>>>> 704657eac9b1315679725ce9417bc963238e864f
 % =============================================================================
 % criar_estufa/9
 % =============================================================================
 % Input:
+<<<<<<< HEAD
 %   - Id: identificador único da estufa (atom)
 %   - Nome: nome da estufa (string)
 %   - Local: localização geográfica da estufa (string)
@@ -13,16 +17,34 @@
 %   - Ls: limite superior de conforto térmico (number)
 %   - Lai: limite absoluto inferior (abaixo do qual é "freezing") (number)
 %   - Las: limite absoluto superior (acima do qual é "burning") (number)
+=======
+%   - Id     : identificador Ãºnico da estufa                          (atom)
+%   - Nome   : nome da estufa                                         (string)
+%   - Local  : localizaÃ§Ã£o geogrÃ¡fica da estufa                       (string)
+%   - Frutas : lista de frutas cultivadas                             (list of atoms)
+%   - Li     : limite inferior de conforto tÃ©rmico                    (number)
+%   - Ls     : limite superior de conforto tÃ©rmico                    (number)
+%   - Lai    : limite absoluto inferior (abaixo do qual Ã© "freezing") (number)
+%   - Las    : limite absoluto superior (acima do qual Ã© "burning")   (number)
+>>>>>>> 704657eac9b1315679725ce9417bc963238e864f
 %
 % Output:
 %   - Cria uma frame no sistema com os atributos fornecidos.
 %
 % Funcionamento:
+<<<<<<< HEAD
 %   Este predicado cria uma nova estufa no sistema Golog.
 %   A estufa é representada por uma frame com os seguintes atributos:
 %   - nome, localizacao, tipos_fruta
 %   - parâmetros térmicos: li, ls, lai, las
 %   Usa os predicados `new_frame/1` e `new_slot/3` da engine Golog.
+=======
+%   Cria uma nova estufa no sistema Golog.
+%   A estufa Ã© representada por uma frame com os seguintes atributos:
+%   - nome, localizacao, tipos_fruta
+%   - parÃ¢metros tÃ©rmicos: li, ls, lai, las
+%  
+>>>>>>> 704657eac9b1315679725ce9417bc963238e864f
 %
 % Como usar:
 %   ?- criar_estufa(estufa1, 'Estufa Norte', 'Lisboa', [morango, tomate], 15, 30, 10, 40).
@@ -48,12 +70,12 @@ criar_estufa(Id, Nome, Local, Frutas, Li, Ls, Lai, Las) :-
 %   - Id: identificador da estufa (atom)
 %
 % Output:
-%   - Mostra no terminal todos os slots e valores associados à estufa indicada.
+%   - Mostra no terminal todos os slots e valores associados Ã  estufa indicada.
 %
 % Funcionamento:
 %   Este predicado usa o predicado Golog `show_frame/1` para apresentar
-%   o conteúdo da frame da estufa, incluindo os seus atributos e valores
-%   (nome, localização, tipos de fruta, parâmetros ambientais, etc.).
+%   o conteÃºdo da frame da estufa, incluindo os seus atributos e valores
+%   (nome, localizaÃ§Ã£o, tipos de fruta, parÃ¢metros ambientais, etc.).
 %
 % Como usar:
 %   ?- mostrar_estufa(estufa1).
@@ -70,7 +92,7 @@ mostrar_estufa(Id) :-
 % Input:
 %   - Id: identificador da estufa             (atom)
 %   - Nome: novo nome da estufa               (string)
-%   - Local: nova localização                 (string)
+%   - Local: nova localizaÃ§Ã£o                 (string)
 %   - Frutas: nova lista de frutas cultivadas (list)
 %   - Li: novo limite inferior                (number)
 %   - Ls: novo limite superior                (number)
@@ -82,7 +104,7 @@ mostrar_estufa(Id) :-
 %
 % Funcionamento:
 %   Substitui os valores
-%   de todos os slots principais de uma estufa. Os slots têm de existir.
+%   de todos os slots principais de uma estufa. Os slots tÃªm de existir.
 %
 % Como usar:
 %   ?- alterar_estufa(estufa1, 'Estufa Sul', 'Faro', [banana, manga], 17, 28, 12, 38).
@@ -110,8 +132,8 @@ alterar_estufa(Id, Nome, Local, Frutas, Li, Ls, Lai, Las) :-
 %
 % Funcionamento:
 %   Este predicado elimina uma estufa existente do sistema, usando o predicado
-%   `delete_frame/1` da biblioteca GOLOG. Após a execução, a estufa deixa de existir
-%   e não pode mais ser consultada com `show_frame/1` ou `get_value/3`.
+%   `delete_frame/1` da biblioteca GOLOG. ApÃ³s a execuÃ§Ã£o, a estufa deixa de existir
+%   e nÃ£o pode mais ser consultada com `show_frame/1` ou `get_value/3`.
 %
 % Como usar:
 %   ?- apagar_estufa(estufa1).
