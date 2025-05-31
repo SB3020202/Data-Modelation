@@ -3,7 +3,7 @@
 | RF  | Description                                                                                        | Status |
 |-----|----------------------------------------------------------------------------------------------------|--------|
 | 1   | Criar, visualizar, alterar e apagar estufas, incluindo parametrização ambiental                    | ✅     |
-| 2   | Criar, visualizar, alterar e apagar sensores e frutas, incluindo simulação de medições             | ⚠️     |
+| 2   | Criar, visualizar, alterar e apagar sensores e frutas, incluindo simulação de medições             | ✅     |
 | 3   | Criar encomendas com diferentes frutas e quantidades, verificando disponibilidade em stock         |        |
 | 4   | Visualizar encomendas feitas e o seu estado (em preparação / em entrega / entregue)                |        |
 | 5   | Configurar e simular os níveis de climatização com base nos valores dos sensores                   |        |
