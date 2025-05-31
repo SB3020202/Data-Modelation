@@ -11,3 +11,11 @@
 | 7   | Gerar e visualizar automaticamente mensagens de alarme com base em eventos críticos                |        |
 | 8   | Criar Diagrama de Classes representando a estrutura da estufa e entidades relacionadas             |        |
 | 9   | Criar Diagrama de Sequência mostrando a interação sensores ↔ demónios ↔ atuadores                  |        |
+
+
+
+
+DÚVIDAS:
+     No RF1: É suposto criar_fruta individual? eu assumi criar um lote, parece-me mais realista.        (Sidi)
+     No RF2: Não me faz sentido mudar a estufa de uma fruta, deixei caso seja necessário mais no final. (Sidi)
+       
