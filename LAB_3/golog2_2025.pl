@@ -20,9 +20,13 @@
 :-dynamic frame_/1.
 :-dynamic relation_/1.
 
+:-dynamic demon_/2.
+:-dynamic sprintf/3.
+:-dynamic varlist/2.
+:-dynamic slot_/2.
+
 % http://stackoverflow.com/questions/130097/real-world-prolog-usage
-%
-%
+
 
 save_kb(Filename):-
 	tell(Filename),
