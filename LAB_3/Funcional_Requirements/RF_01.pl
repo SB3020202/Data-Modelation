@@ -10,6 +10,7 @@
 
 criar_estufa(Id, Nome, Local, Li, Ls, Lai, Las) :-
 	\+ frame_exists(Id),
+
 	new_frame(Id),
 	new_slot(Id, nome, Nome),
 	new_slot(Id, localizacao, Local),
