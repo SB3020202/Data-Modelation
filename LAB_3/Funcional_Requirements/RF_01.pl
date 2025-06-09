@@ -1,110 +1,87 @@
+sistema_estufa
+	:- def_estufa.
+
 %	Class name:		Estufa
 
-%	-	Id					atom
-%	-	Local				string
-%	-	Cultivos			list
-%	-	Li					number
-%	-	Ls					number
-%	-	Lai					number
-%	-	Las					number
+%	-	Local			string
+%	-	Cultivos		string[]
+%	-	Local			string
 
-%	+	criar_estufa()		void
-%	+	mostrar_estufa()		void
-%	+	alterar_estufa()		void
-%	+	apagar_estufa()		void
+%		definicao da classe abstrata estufa
 
-:- dynamic new_value/2.
-:- dynamic delete_values/3.
+def_estufa
+	:-	new_frame(estufa),
 
+		new_slot(estufa, cultivos),
+		new_slot(estufa, localizacao),
+		new_slot(estufa, nome),
+		new_slot(estufa, sensor),
+		new_slot(estufa, count, 0),
 
-%		Cria uma estufa ao criar uma nova frame no sistema com os atributos recebidos no input.
+		new_relation(is_a, transitive, all, nil),
 
-criar_estufa(EstufaId, Local, Li, Ls, Lai, Las) 
-	:-	new_frame(EstufaId),
-
-		new_slot(EstufaId, cultivos),
-		new_slot(EstufaId, localizacao, Local),
-		new_slot(EstufaId, limInferior, Li),
-		new_slot(EstufaId, limSuperior, Ls),
-		new_slot(EstufaId, limAbsolutoInferior, Lai),
-		new_slot(EstufaId, limAbsolutoSuperior, Las),
+		print_green('Estufa criada: '), nl.
 
 
-		print_green('Estufa criada sem cultivos: '), print_green(EstufaId).	%frame_local_slots(EstufaId, EstufaSlots)
+%		definicao de um objeto estufa
 
+create_estufa(Local, Cultivos, Nome)
+	:-	gen_estufa_name(N),
+		new_frame(N),
 
+		new_slot(N, is_a, estufa),
+		(is_list(Cultivos) -> new_values(N, cultivos, Cultivos) ; new_value(N, cultivos, Cultivos)),
+		new_value(N, localizacao, Local),
+		new_value(N, nome, Nome),
 
-
-criar_estufa(EstufaId, Local, Cultivos, Li, Ls, Lai, Las) 
-	:-	new_frame(EstufaId),
-
-		new_slot(EstufaId, cultivos, Cultivos),
-		new_slot(EstufaId, localizacao, Local),
-		new_slot(EstufaId, limInferior, Li),
-		new_slot(EstufaId, limSuperior, Ls),
-		new_slot(EstufaId, limAbsolutoInferior, Lai),
-		new_slot(EstufaId, limAbsolutoSuperior, Las),
-
-		print_green('Estufa criada: '), print_green(EstufaId), writeln(''),
-		print_green('Com os cultivos: '), print_green(Cultivos).
+		print_green('Nova estufa: ', Nome), nl.
 
 
 
-
-%		Apresenta os atributos do frame com o id da estuda no input.
-
-mostrar_estufa(Id)
-	:-	(frame_exists(Id) -> show_frame(Id) ; print_red('Estufa inexistente.'), fail).
-
-
-
-
-%		Substitui os valores de todos os slots de uma estufa.
-
-alterar_estufa(EstufaId, Local, Li, Ls, Lai, Las)
-	:- frame_exists(EstufaId),
-
-		new_value(EstufaId, localizacao, Local),
-		new_value(EstufaId, cultivos),
-		new_value(EstufaId, limInferior, Li),
-		new_value(EstufaId, limSuperior, Ls),
-		new_value(EstufaId, limAbsolutoInferior, Lai),
-		new_value(EstufaId, limAbsolutoSuperior, Las).
-
-alterar_estufa(EstufaId, Local, Cultivos, Li, Ls, Lai, Las)
-	:- frame_exists(EstufaId),
-
-		new_value(EstufaId, localizacao, Local),
-		%podiamos verificar para so adicionar as frames caso ja existem, mas se da para criar sem que existam, entao n vale a pena.
-		new_value(EstufaId, cultivos, Cultivos),
-		new_value(EstufaId, limInferior, Li),
-		new_value(EstufaId, limSuperior, Ls),
-		new_value(EstufaId, limAbsolutoInferior, Lai),
-		new_value(EstufaId, limAbsolutoSuperior, Las).
+gen_estufa_name(N)
+	:-	get_value(estufa, count, A),
+		A1 is A + 1,
+		new_value(estufa, count, A1),
+		atom_concat(estufa, A1, N).
 
 
 
+show_estufa_count
+	:-	get_value(estufa, count, Count),	print_green('Numero de estufas: ', Count), nl.
 
-%   	Elimina uma estufa existente do sistema, e todos os seus atributos.
+
+
+alterar_local_estufa(Id, Local)
+	:-	new_value(Id, localizacao, Local),
+	
+		get_value(Id, localizacao, L),		print_green('Local alterado para ', L), writeln('.').
+
+
+
+alterar_nome_estufa(Id, Nome)
+	:-	new_value(Id, nome, Nome),
+	
+		get_value(Id, nome, N),				print_green('Nome alterado para ', N), writeln('.').
+
+
 
 apagar_estufa(Id)
-	:-	(frame_exists(Id) -> delete_frame(Id) ; print_red('Estufa inexistente.'), fail).
+	:-	get_value(Id, nome, N),
+		delete_frame(Id),
+		
+		print_green('Estufa apagada: ', N), nl.
 
 
 
+adicionar_cultivos(Id, Cultivos)
+	:-	(is_list(Cultivos) -> add_values(Id, cultivos, Cultivos) ; add_value(Id, cultivos, Cultivos)),
+		get_values(Id, cultivos, C),		print_green('Cultivos atualizados: ', C), nl.
 
-%		Adiciona um ou mais cultivos a uma estufa
 
-adicionar_cultivo_estufa(EstufaId, Cultivo)
-	:- (frame_exists(EstufaId) -> add_value(EstufaId, cultivos, Cultivo) ; print_red('Houve um problema a adicionar o cultivo.'), fail).
+remover_cultivo(Id, Cultivo)
+	:-	delete_value(Id, cultivos, Cultivo),
+		get_values(Id, cultivos, C),		print_green('Cultivos atualizados: ', C), nl.
 
-adicionar_cultivos_estufa(EstufaId, Cultivos)
-	:- (frame_exists(EstufaId) -> add_values(EstufaId, cultivos, Cultivos) ; print_red('Houve um problema a adicionar os cultivos.'), fail).
-
-%		Remove um cultivo de uma estufa
-
-remover_cultivo_estufa(EstufaId, Cultivo)
-	:- (frame_exists(EstufaId) -> delete_value(EstufaId, cultivos, Cultivo) ; print_red('Estufa inexistente.'), fail).
-
-remover_cultivos_estufa(EstufaId, Cultivos)
-	:- (frame_exists(EstufaId) -> delete_values(EstufaId, cultivos, Cultivos) ; print_red('Estufa inexistente.'), fail).
+remover_cultivos(Id)
+	:-	delete_values(Id, cultivos),
+		print_green('Cultivos removidos: ', C), nl.

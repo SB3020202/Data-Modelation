@@ -15,15 +15,5 @@
 ### para abrir todos os ficheiros Prolog, numa linha de comandos `git bash`
 
 ```bash
-swipl golog2_2025.pl Testes/* Funcional_Requirements/*
+swipl golog2_2025.pl Utils.pl Funcional_Requirements/*
 ```
-
-### DÚVIDAS:
-
-`No RF1: É suposto criar_fruta individual? eu assumi criar um lote, parece-me mais realista.`
-
-**Depois ve-se se é preciso**
-
-`No RF2: Não me faz sentido mudar a estufa de uma fruta, deixei caso seja necessário mais no final.`
-
-**Tudo tem que ser alteravel, nao vale a pena nao implementar por preguica, apenas verifca-se se a estufa dada existe e pronto**
