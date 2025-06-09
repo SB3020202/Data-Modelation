@@ -1,13 +1,16 @@
 def_sistema
 	:-	new_relation(is_a, transitive, all, nil),
 		new_relation(is_in, transitive, inclusion([localizacao]), nil),
-		def_estufa, def_sensor, def_actuator.
+		def_estufa, def_sensor, def_actuator, def_fruta, def_encomenda.
 
 delete_sistema
 	:-	delete_relation(is_a),
+		delete_relation(is_in),
 		delete_frame(estufa),
 		delete_frame(sensor),
-		delete_frame(actuator).
+		delete_frame(actuator),
+		delete_frame(fruta),
+		delete_frame(encomenda).
 
 
 
@@ -18,8 +21,10 @@ def_estufa
 		new_slot(estufa, cultivos),
 		new_slot(estufa, localizacao),
 		new_slot(estufa, nome),
-		new_slot(estufa, sensor),
 		new_slot(estufa, count, 0),
+		new_slot(estufa, clima),
+
+		new_demon(estufa, clima, humidaded, if_read, after, alter_value),
 
 		print_green('Classe Estufa criada').
 
@@ -35,11 +40,18 @@ create_estufa(Local, Cultivos, Nome)
 		),
 		new_value(N, localizacao, Local),
 		new_value(N, nome, Nome),
-		create_sensor_soil, create_sensor_co2,
+		create_sensor(N, soil, 15, 30, 70, 85),
+		create_sensor(N, co2, 10, 40, 60, 90),
+		create_actuactor(N, rega, soil),
+		create_actuactor(N, ventilador, co2),
+		create_actuactor(N, nebulizador, soil),
 
 
 		print_green('Nova estufa: ', Nome).
 
+
+humidaded(F, S, _, T)
+	:-	get_value(soil, status, T).
 
 
 show_estufa_count

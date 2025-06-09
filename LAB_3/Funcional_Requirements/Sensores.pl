@@ -13,41 +13,18 @@ def_sensor
 
 		print_green('Classe Sensor criada').
 
-create_sensor_soil(EstufaId)
-	:-	new_frame(soil),
 
-		new_slot(soil, is_a, sensor),
-		new_slot(soil, is_in, EstufaId),
-		new_value(soil, li, 15),
-		new_value(soil, ls, 30),
-		new_value(soil, lai, 70),
-		new_value(soil, las, 85),
+create_sensor(EstufaId, SensorId, Li, Ls, Lai, Las)
+	:-	new_frame(SensorId),
 
-		print_green('Sensor soil criado').
+		new_slot(SensorId, is_a, sensor),
+		new_slot(SensorId, is_in, EstufaId),
+		new_value(SensorId, li, Li),
+		new_value(SensorId, ls, Ls),
+		new_value(SensorId, lai, Lai),
+		new_value(SensorId, las, Las),
 
-create_sensor_co2(EstufaId)
-	:-	new_frame(co2),
-
-		new_slot(co2, is_a, sensor),
-		new_slot(co2, is_in, EstufaId),
-		new_value(co2, li, 15),
-		new_value(co2, ls, 30),
-		new_value(co2, lai, 70),
-		new_value(co2, las, 85),
-
-		print_green('Sensor soil criado').
-
-
-create_sensor(Nome, Li, Ls, Lai, Las)
-	:-	new_frame(Nome),
-
-		new_slot(Nome, is_a, sensor),
-		new_value(Nome, li, Li),
-		new_value(Nome, ls, Ls),
-		new_value(Nome, lai, Lai),
-		new_value(Nome, las, Las),
-
-		print_green('Novo sensor: ', Nome).
+		print_green('Novo sensor: ', SensorId).
 
 
 
@@ -73,22 +50,22 @@ statusd(F, _S, _, T)
 		get_value(F, li, Li),
 		get_value(F, ls, Ls),
 		get_value(F, lai, Lai),
-		get_value(F, las, Las),
-		act(T, D).
+		get_value(F, las, Las).%,
+		/*act(T, D).
 
 act(T, D)
 	:-	call_method_0().
 
-
+*/
 
 alterar_li_sensor(Id, Li)
 	:-	new_value(Id, li, Li),
 
 		get_value(Id, li, Li),	print_green('Limite inferior alterado para ', Li).
 
-apagar_sensor_soil_estufa
-	:-	new_value(soil, is_in, []),	print_green('Sensor soil retirado da estufa').
+remove_from_estufa(SensorId)
+	:-	new_value(SensorId, is_in, []),	print_green('Sensor retirado da estufa: ', SensorId).
 
-apagar_sensor_soil
-	:-	delete_frame(soil),	print_green('Sensor soil apagado').
+apagar_sensor(SensorId)
+	:-	delete_frame(SensorId),	print_green('Sensor apagado: ', SensorId).
 
