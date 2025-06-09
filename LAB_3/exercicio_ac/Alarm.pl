@@ -1,5 +1,5 @@
 def_alarm
-	:- new_frame(alarm),
+	:	new_frame(alarm),
 
 		new_slot(alarm, event),
 		new_slot(alarm, temp),
@@ -8,11 +8,11 @@ def_alarm
 
 		new_relation(is_a, transitive, all, nil),
 
-		print_green('Alarm created.'), nl.
+		print_green('Alarm created').
 
 
 genmsg(T, E, D)
-	:- genname(N),
+	:-	genname(N),
 		new_frame(N),
 
 		new_slot(N, is_a, alarm),
@@ -20,10 +20,10 @@ genmsg(T, E, D)
 		new_value(N, temp, T),
 		new_value(N, date, D).
 		
-		print_green('New alarm: '), write(N), nl.
+		print_green('New alarm: ', N).
 
 genname(N)
 	:-	get_value(alarm,count,A),
-		A1 is A+1,
+		A1 is A + 1,
 		new_value(alarm,count,A1),
 		atom_concat(alarm,A1,N).

@@ -11,7 +11,7 @@ def_thermo
 		new_demon(thermostat, temp, controld, if_write, before, side_effect),
 		new_demon(thermostat, clima, climad, if_read, after, alter_value),
 
-		print_green('Thermostat created.'), nl.
+		print_green('Thermostat created').
 
 
 climad(F, S, _, C)
@@ -23,21 +23,11 @@ climad(F, S, _, C)
 		classify(T, Lai, Li, Ls, Las, C).
 
 
-classify(T, _, Li, Ls, _,'comfort')
-	:- T >= Li, T =< Ls.
-
-classify(T, Lai, _, _, _,'freezing')
-	:- T < Lai.
-
-classify(T, _, _, _, Las, 'burning')
-	:- T > Las.
-
-classify(T, Lai, Li, _, _, 'cold')
-	:- T >= Lai, T < Li.
-
-classify(T, _, _, Ls, Las, 'hot')
-	:- T >= Ls, T =< Las.
-
+classify(T, _, Li, Ls, _,	'comfort')	:- T >= Li, T =< Ls.
+classify(T, Lai, _, _, _,	'freezing')	:- T < Lai.
+classify(T, _, _, _, Las,	'burning')	:- T > Las.
+classify(T, Lai, Li, _, _,	'cold')		:- T >= Lai, T < Li.
+classify(T, _, _, Ls, Las,	'hot')		:- T >= Ls, T =< Las.
 
 
 
@@ -49,26 +39,22 @@ controld(F, S, _, T)
 		get_value(F, las, Las),
 		act(T, Ta, Li, Lai, Ls, Las).
  
-act(T, Ta, Li, Lai, Ls, Las)
-	:- T>Ls, 
-		call_method_0(ac,cool),
+act(T, Ta, Li, Lai, Ls, Las)			:- T>Ls, 
+		call_method_0(ac, cool),
 		malarm(T, Ta, Li, Lai, Ls, Las).
 
-act(T, Ta, Li, Lai, Ls, Las)
- 	:-	T<Li,
+act(T, Ta, Li, Lai, Ls, Las)			:-	T<Li,
 		call_method_0(ac,warm),
 		malarm(T, Ta, Li, Lai, Ls, Las).
 
 act(_,_,_,_,_,_)
 	:- call_method_0(ac,stop).
 
-malarm(T,Ta,_,_,_,Las)
-	:- T>Las, Ta<Las, 
+malarm(T,Ta,_,_,_,Las)					:- T>Las, Ta<Las, 
 		getdate(D), 
 		genmsg(T, burning,D).
 
-malarm(T,Ta,_,Lai,_,_)
-	:-	T<Lai, Ta>Lai, 
+malarm(T,Ta,_,Lai,_,_)					:-	T<Lai, Ta>Lai, 
 		getdate(D), 
 		genmsg(T,freezing,D).
 	

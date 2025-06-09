@@ -9,16 +9,17 @@ def_ac
 
 		new_demon(ac, temp, readtd, if_read, after, alter_value),
 
-		print_green('AC created.'), nl.
+		print_green('AC created').
 
 stopf(F) 
-	:- new_value(F, status, 'Inactive'), print_green('AC stopped'), nl.
+	:-	new_value(F, status, 'Inactive'), print_green('AC stopped').
 
 coolf(F)
-	:- new_value(F, status, 'cooling'), print_green('AC is heating'), nl.
+	:-	new_value(F, status, 'cooling'), print_green('AC is heating').
+
 warmf(F)
-	:- new_value(F, status, 'warming'), print_green('AC is cooling'), nl.
+	:-	new_value(F, status, 'warming'), print_green('AC is cooling').
 
 
 readtd(F, S, _, T)
-	:- get_value(thermostat, temp, T).
+	:-	get_value(thermostat, temp, T).
