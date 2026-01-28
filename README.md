@@ -1,4 +1,7 @@
-
+Final Grade
+Lab 1: 17/20
+Lab 2: 18/20
+Lab 3: 17/20
 ### Como usar o Git passo a passo
 MDE 2024-2025
 
