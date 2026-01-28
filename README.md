@@ -1,4 +1,5 @@
 Final Grade
+
 Lab 1: 17/20
 
 Lab 2: 18/20
