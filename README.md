@@ -6,7 +6,7 @@ Final Grade
 
 ▪️ Lab 3: 17/20
 
-Final Lab Grade: 18/20
+Final Lab Grade: 17.5/20
 
 ### How to use Git step by step:
 MDE 2024-2025
